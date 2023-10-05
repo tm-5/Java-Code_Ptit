@@ -1,0 +1,28 @@
+/
+package javaapplication3;
+import java.util.*;
+
+public class JavaApplication3 {
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+        int t=s.nextInt();
+        int q=1;
+        while(q<=t){
+            int n=s.nextInt();
+            System.out.print("Test "+q+": ");
+            for(int i=2;i<=n;i++){
+                int dem=0;
+                if(n%i==0){
+                    while(n%i==0){
+                        dem++;
+                        n/=i;
+                    }
+                    System.out.print(i+"("+dem+") ");
+                }
+            }
+            q++;
+            System.out.println("");
+        }
+    }
+    
+}
