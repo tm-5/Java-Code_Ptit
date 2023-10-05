@@ -1,0 +1,15 @@
+package javaapplication1;
+import java.util.*;
+
+public class JavaApplication1 {   
+    public static void main(String[] args) {
+    Scanner s= new Scanner(System.in);
+        long t=s.nextInt();
+        long d=0,dem=1;
+        for(int i=1;i<=t;i++){
+            dem*=i;
+            d+=dem;
+        }
+        System.out.println(d);
+    }  
+}
