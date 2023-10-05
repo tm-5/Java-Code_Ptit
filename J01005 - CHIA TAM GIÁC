@@ -1,0 +1,20 @@
+package javaapplication4;
+import java.util.*;
+import java.io.*;
+
+public class JavaApplication4 {
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in) ;
+        int t=s.nextInt();
+        while(t-->0){
+            int n=s.nextInt();
+            int h=s.nextInt();
+            double dt=(double)n*h/2;
+            for(int i=1;i<n;i++){
+                System.out.printf("%.6f",h*Math.sqrt((double)i/n));
+                System.out.print(" ");
+            }
+            System.out.println("");
+        }             
+    }
+}
