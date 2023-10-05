@@ -1,0 +1,27 @@
+package javaapplication1;
+import java.util.*;
+
+public class JavaApplication1 {
+    public static void main(String[] args) {
+        Scanner s= new Scanner(System.in);
+        long fi[]=new long [93];
+        fi[0]=0;
+        fi[1]=1;
+        for(int i=2;i<93;i++){
+            fi[i]=fi[i-1]+fi[i-2];       
+        }
+        int t=s.nextInt();
+        while(t-->0){
+            boolean kt=false;
+            long n=s.nextLong();    
+            for(int i=0;i<93;i++){
+                if(n== fi[i]){
+                    kt=true;
+                    break;
+                }
+            }
+            if(kt) System.out.println("YES");
+            else System.out.println("NO");
+        }
+    }   
+}
