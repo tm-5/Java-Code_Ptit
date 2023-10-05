@@ -1,0 +1,21 @@
+package javacode;
+import java.util.*;
+
+public class Javacode {
+    public static void main(String[] args) {
+        Scanner s= new Scanner(System.in);
+        int t=s.nextInt();
+        while(t-->0){
+            long n=s.nextInt();
+            boolean kt=true;
+            for(int i=2;i<=Math.sqrt(n);i++){
+                if(n%i==0){
+                    kt=false;
+                    break;
+                }                
+            }
+            if(kt==false) System.out.println("NO");
+            else System.out.println("YES");
+        }
+    }    
+}
