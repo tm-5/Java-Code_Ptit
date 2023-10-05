@@ -1,0 +1,19 @@
+package javacode;
+import java.util.*;
+
+public class Javacode {
+    public static void main(String[] args) {
+        Scanner s= new Scanner(System.in);
+        long fi[]=new long [93];
+        fi[0]=0;
+        fi[1]=1;
+        for(int i=2;i<93;i++){
+            fi[i]=fi[i-1]+fi[i-2];       
+        }
+        int t=s.nextInt();
+        while(t-->0){
+            int n=s.nextInt();    
+            System.out.println(fi[n]);    
+        }
+    }   
+}
