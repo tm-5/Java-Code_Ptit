@@ -1,0 +1,28 @@
+package javaapplication1;
+import java.util.*;
+import java.io.*;
+
+public class JavaApplication1 {
+ 
+    public static void main(String[] args) {
+        File f=new File("DATA.in");
+        int m[]=new int [100005];
+        try{
+            Scanner s=new Scanner(f);
+            while(s.hasNext()){
+                String x=s.next();
+                int t=Integer.parseInt(x);
+                m[t]++;
+            }
+            for(int i=0;i<100005;i++){
+                if(m[i]!=0){
+                    System.out.println(i+" "+m[i]);
+                    m[i]=0;
+                }
+            }
+        }
+        catch(FileNotFoundException e) {
+            
+        }
+    }   
+}
