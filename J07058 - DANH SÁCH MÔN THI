@@ -1,0 +1,39 @@
+package javaapplication2;
+import java.util.*;
+import java.io.*;
+import java.math.BigInteger;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class LoaiPhong implements Comparable<LoaiPhong>{
+    private String ma,ten,h;
+    public LoaiPhong(String ma,String ten,String h){
+        this.ma=ma;
+        this.ten=ten;
+        this.h=h;
+    }
+    @Override
+    public String toString(){
+        return ma+" "+ten+" "+h;
+    }  
+    @Override
+    public int compareTo(LoaiPhong p){
+        if(this.ma.compareTo(p.ma)<0) return -1;
+        return 1;
+    }
+}
+
+public class JavaApplication2 {
+    public static void main(String[] args) throws IOException {
+        ArrayList<LoaiPhong> ds = new ArrayList<>();
+        Scanner in = new Scanner(new File("MONHOC.in"));
+        int n = Integer.parseInt(in.nextLine());
+        while(n-->0){
+            ds.add(new LoaiPhong(in.nextLine(),in.nextLine(),in.nextLine()));
+        }
+        Collections.sort(ds);
+        for(LoaiPhong tmp : ds){
+            System.out.println(tmp);
+        }
+    }
+}
