@@ -1,0 +1,37 @@
+package javaapplication2;
+import java.util.*;
+
+public class JavaApplication2 {
+    
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+        int t=s.nextInt();
+        s.nextLine();
+        while(t-->0){
+            String n=s.nextLine();
+            n=n.trim();
+            String a[]=n.split("\\s+");
+            ArrayList<String> ar=new ArrayList<String>();
+            for(int i=1;i<a.length;i++){
+                String k="";
+                k+=a[i].charAt(0);
+                k=k.toUpperCase();
+                a[i]=a[i].trim();
+                a[i]=a[i].toLowerCase();
+                for(int j=1;j<a[i].length();j++){
+                    k+=a[i].charAt(j);
+                }
+                ar.add(k);
+                
+            }
+            for(int i=0;i<ar.size()-1;i++){
+                System.out.print(ar.get(i)+" ");
+            }
+            System.out.print(ar.get(ar.size()-1));
+            System.out.print(", ");
+            String k=a[0];
+            k=k.toUpperCase();
+            System.out.println(k);
+        }
+    }
+}
