@@ -1,0 +1,35 @@
+package javaapplication2;
+import java.util.*;
+
+class ThiSinh{
+    private String name,date;
+    private double p1,p2,p3;
+    public ThiSinh(String n,String d,double p1,double p2, double p3){
+        this.name=n;
+        this.date=d;
+        this.p1=p1;
+        this.p2=p2;
+        this.p3=p3;
+    }
+    public String getName(){
+        return this.name;
+    }
+    public String getDate(){
+        return this.date;
+    }
+    public double getPoint(){
+        return this.p1+this.p2+this.p3;
+    }
+    public void hienThi(){
+        System.out.print(getName()+" "+getDate()+" ");
+        System.out.printf("%.1f",getPoint());
+    }
+}
+
+public class JavaApplication2 {
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+        ThiSinh t=new ThiSinh(s.nextLine(),s.next(),s.nextDouble(),s.nextDouble(),s.nextDouble());
+        t.hienThi();
+    }
+}
