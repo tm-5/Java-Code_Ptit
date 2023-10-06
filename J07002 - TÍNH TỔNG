@@ -1,0 +1,25 @@
+package javaapplication1;
+import java.util.*;
+import java.io.*;
+
+public class JavaApplication1 {
+    public static void main(String[] args) {
+        File f=new File("DATA.in");
+        try{
+            Scanner s=new Scanner(f);
+            long t=0;
+            while(s.hasNext()){
+                try{
+                    String x=s.next();
+                    t+=Integer.parseInt(x);
+                }
+                catch(NumberFormatException e){
+                }
+            }
+            System.out.println(t);
+        }
+        catch(FileNotFoundException e) {
+            
+        }
+    }   
+}
