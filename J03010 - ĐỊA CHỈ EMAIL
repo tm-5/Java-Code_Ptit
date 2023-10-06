@@ -1,0 +1,39 @@
+package javaapplication2;
+import java.util.*;
+
+public class JavaApplication2 {
+    
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+        int t=s.nextInt();
+        s.nextLine();
+        HashMap<String,Integer> m=new HashMap<>();
+        while(t-->0){
+            String n=s.nextLine();
+            n=n.trim();
+            n=n.toLowerCase();
+            String[] ar=n.split("\\s+");
+            
+            String k="";
+            k+=ar[ar.length-1];
+            for(int i=0;i<ar.length-1;i++){
+                k+=ar[i].charAt(0);
+            }
+            if(m.get(k)==null){
+                m.put(k, 1);
+            }
+            else{
+                int tt=m.get(k);
+                m.put(k, tt+1);
+                
+            }
+            if(m.get(k)!=1){
+               System.out.print(k+m.get(k));
+            }
+            else{
+                System.out.print(k);
+            } 
+            System.out.println("@ptit.edu.vn");
+        }
+    }
+}
