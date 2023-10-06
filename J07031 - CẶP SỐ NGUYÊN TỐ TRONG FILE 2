@@ -1,0 +1,38 @@
+package javaapplication4;
+import java.util.*;
+import java.io.*;
+
+public class JavaApplication4 {
+    
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        int[] f=new int[1000002];
+        for(int i=2;i<1000002;i++){
+            if(f[i]==0){
+                for(int j=2;j*i<(1000002);j++){
+                    f[i*j]=1;
+                }
+            }
+        }
+        
+        FileInputStream f1=new FileInputStream("DATA1.in");
+        FileInputStream f2=new FileInputStream("DATA2.in");
+        ObjectInputStream o1=new ObjectInputStream(f1);
+        ObjectInputStream o2=new ObjectInputStream(f2);
+        ArrayList<Integer> a=(ArrayList<Integer>) o1.readObject();
+        ArrayList<Integer> b=(ArrayList<Integer>) o2.readObject();
+        Set<Integer> s1=new TreeSet<>();        
+        Set<Integer> s2=new TreeSet<>();
+        for(int i:a){
+            if(f[i]==0) s1.add(i);
+        }
+        for(int i:b){
+            s2.add(i);
+        }
+        for(int i:s1){
+            if(i>500000) break;
+            if(s1.contains((1000000-i))==true && s2.contains(i)==false && s2.contains((1000000-i))==false){
+                System.out.println(i+" "+(1000000-i));
+            }
+        }
+    }
+}
