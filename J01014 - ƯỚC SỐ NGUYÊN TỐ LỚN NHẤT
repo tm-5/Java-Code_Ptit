@@ -1,0 +1,29 @@
+package javaapplication3;
+import java.util.*;
+
+public class JavaApplication3 {
+    public static boolean snt(long n){
+        if(n<2) return false;
+        for(long i=2;i<=(long) Math.sqrt(n)+1;i++){
+            if(n%i==0) return false;
+        }
+        return true;
+    }
+    
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+        long t=s.nextInt();
+        while(t-->0){
+            long n= s.nextLong();
+            if(snt(n)==true) System.out.println(n);
+            else{
+                for(long i=2;i<=n;i++){
+                    if(n%i==0 && snt(n/i)==true){
+                        System.out.println(n/i);
+                        break;
+                    }
+                }   
+            } 
+        }
+    }
+}
