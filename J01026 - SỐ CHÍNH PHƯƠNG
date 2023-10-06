@@ -1,0 +1,18 @@
+package javaapplication1;
+import java.util.*;
+
+public class JavaApplication1 {  
+    public static void main(String[] args) {
+    Scanner s= new Scanner(System.in);
+        long t=s.nextLong();
+        while(t-->0){
+            long n=s.nextLong();
+            boolean kt=false;
+            for(int i=1;i<=Math.sqrt(n);i++){
+                if(i*i==n) kt=true;
+            }
+            if(kt==true) System.out.println("YES");
+            else System.out.println("NO");
+        } 
+    }
+}
