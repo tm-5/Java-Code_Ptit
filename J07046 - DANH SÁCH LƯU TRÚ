@@ -1,0 +1,48 @@
+package javaapplication7;
+import java.util.*;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class Khach implements Comparable<Khach>{
+    private String ma,ten,mp;
+    private long tong;
+    private Date d,v;
+    private static int id=1;
+    public Khach(String a,String b,String c,String e) throws ParseException{
+        this.mp=b;
+        this.ten=a;
+        this.ma="KH"+String.format("%02d",id++);
+        SimpleDateFormat sf=new SimpleDateFormat("dd/MM/yyyy");
+        this.d=sf.parse((c));
+        this.v=sf.parse((e));
+        this.tong=(v.getTime()-d.getTime())/1000/60/60/24;
+    }
+    
+    @Override 
+    public String toString(){
+        return ma+" "+ten+" "+mp+" "+tong;
+    }    
+    @Override
+    public int compareTo(Khach p) {
+        if(this.tong>p.tong) return -1;
+        return 1;
+    }    
+}
+
+public class JavaApplication7 {
+    public static void main(String[] args) throws FileNotFoundException, ParseException {
+        File f=new File("KHACH.in");
+        Scanner s=new Scanner(f);
+        int t=Integer.parseInt(s.nextLine());
+        ArrayList<Khach>a=new ArrayList<>() ;
+        while(t-->0){ 
+            Khach sv=new Khach(s.nextLine(),s.nextLine(),s.nextLine(),s.nextLine());
+            a.add(sv);
+        }
+        Collections.sort(a);
+        for(Khach i:a){
+            System.out.println(i);
+        }
+    }
+}
