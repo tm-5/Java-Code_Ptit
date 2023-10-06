@@ -1,0 +1,19 @@
+package javaapplication3;
+import java.math.BigInteger;
+import java.util.*;
+
+public class JavaApplication3 {
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+            BigInteger a=s.nextBigInteger();
+            BigInteger b=s.nextBigInteger();
+            
+            if(a.compareTo(b)==0){
+                System.out.print("0");
+            }
+            else{
+                BigInteger k=a.subtract(b);
+                System.out.println(k);
+            }       
+        } 
+}
