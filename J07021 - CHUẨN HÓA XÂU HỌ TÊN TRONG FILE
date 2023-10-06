@@ -1,0 +1,33 @@
+package javaapplication1;
+import java.util.*;
+import java.io.*;
+
+public class JavaApplication1 {
+    public static void main(String[] args) {
+        File f=new File("DATA.in");
+        try{
+            Scanner s=new Scanner(f);
+            while(s.hasNext()){
+                String n=s.nextLine();
+                if(n.equals("END")) break;
+                n=n.trim();
+                n=n.toLowerCase();
+                String a[]=n.split("\\s+");
+                String k="";
+                for(int i=0;i<a.length;i++){
+                    String x=""; x+=a[i].charAt(0);
+                    x=x.toUpperCase();
+                    x+=a[i].substring(1,a[i].length());
+                    k+=x;
+                    k+=" ";
+                }
+                k=k.substring(0,k.length()-1);
+                System.out.println(k);
+            }
+            
+        }
+        catch(FileNotFoundException e) {
+            
+        }
+    }   
+}
