@@ -1,0 +1,52 @@
+package javaapplication1;
+import java.util.*;
+
+class Rectangle{
+    private int w,h;
+    private String c;
+    public Rectangle(){
+        this.w=1;
+        this.h=1;
+    }
+    public Rectangle(int w, int h){
+        this.w=w;
+        this.h=h;
+    }
+    public void input(){
+        Scanner s= new Scanner(System.in);
+        this.w=s.nextInt();
+        this.h=s.nextInt();
+        this.c=s.next();
+    }
+    public String getColor(){
+        String n="";
+        n+=this.c.charAt(0);
+                n=n.toUpperCase();
+
+        this.c=this.c.toLowerCase();
+        n+=this.c.substring(1,this.c.length());
+        return n;
+    }
+    public void hienThi(){
+        if(this.h>0 && this.w>0){
+            int cv=(this.h+this.w)*2;
+            int dt=this.w*this.h;
+            System.out.print(cv); 
+            System.out.print(" ");
+            System.out.print(dt);
+            System.out.print(" ");
+
+            System.out.println(getColor());
+        }
+        else System.out.println("INVALID");
+    }
+}
+
+public class JavaApplication1 {
+    public static void main(String[] args) {
+        Scanner s= new Scanner(System.in);
+            Rectangle p1=new Rectangle();
+            p1.input();
+            p1.hienThi();     
+    }   
+}
