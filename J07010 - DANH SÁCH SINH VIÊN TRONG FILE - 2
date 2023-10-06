@@ -1,0 +1,48 @@
+package javaapplication4;
+import java.util.*;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class SinhVien{
+    private String ten,lop,ns;
+    private double d;
+    public void input(Scanner s){
+        this.ten=s.nextLine();
+        this.lop=s.next();
+        this.ns=s.next();
+        this.d=s.nextDouble();
+    }
+    public String getNS() throws ParseException{
+        SimpleDateFormat sf=new SimpleDateFormat("dd/MM/yyyy");
+        ns=sf.format(sf.parse(ns));
+        return ns;
+    }
+    public void hienThi() throws ParseException{
+        System.out.print(" "+ten+" "+lop+" "+ getNS()+" ");
+        System.out.printf("%.2f",d);
+    }
+}
+
+public class JavaApplication4 {
+    static int tt=0;
+    public static void main(String[] args) throws ParseException {
+        File f=new File("SV.in");
+        try{
+            Scanner s=new Scanner(f);
+            while(s.hasNextLine()){
+                int n=s.nextInt();
+                for (int i=0;i<n;i++){
+                    SinhVien sv=new SinhVien();
+                    s.nextLine();
+                    System.out.print("B20DCCN"+String.format("%03d", ++tt));
+                    sv.input(s);
+                    sv.hienThi();
+                    System.out.println("");
+                }
+            }
+        }
+        catch(FileNotFoundException e) {            
+        }
+    }   
+}
