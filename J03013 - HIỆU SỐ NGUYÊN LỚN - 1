@@ -1,0 +1,24 @@
+package javaapplication3;
+import java.math.BigInteger;
+import java.util.*;
+
+public class JavaApplication3 {
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+        int t=s.nextInt();
+        while(t-->0){
+            BigInteger a=s.nextBigInteger();
+            BigInteger b=s.nextBigInteger();
+            if(a.compareTo(b)<0){
+                BigInteger temp=a;
+                a=b;
+                b=temp;
+            }
+            BigInteger k=a.subtract(b);
+            if(k.toString().length()<a.toString().length()){
+                System.out.print("0");
+            }
+            System.out.println(k);
+        }
+    }
+}
