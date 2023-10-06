@@ -1,0 +1,43 @@
+package javaapplication3;
+import java.util.*;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class MonHoc implements Comparable<MonHoc>{
+    private String ma,ten;
+    private int tc;
+    public MonHoc(String ma,String ten,int tc){
+        this.ma=ma;
+        this.ten=ten;
+        this.tc=tc;
+    }
+    
+    @Override 
+    public String toString(){
+        return ma+" "+ten+" "+tc;
+    }    
+    @Override
+    public int compareTo(MonHoc o1) {
+        if(this.ten.compareTo(o1.ten)<0) return -1;
+        return 1;
+    }    
+}
+
+public class JavaApplication3 {
+    public static void main(String[] args) throws FileNotFoundException {
+        File f=new File("MONHOC.in");
+        Scanner s=new Scanner(f);
+        int n=s.nextInt();      
+        ArrayList<MonHoc>a=new ArrayList<>() ;
+        for(int i=0;i<n;i++){ 
+            s.nextLine();
+            MonHoc sv=new MonHoc(s.nextLine(),s.nextLine(),s.nextInt());
+            a.add(sv);
+        }
+        Collections.sort(a);
+        for(MonHoc sv:a){
+            System.out.println(sv);
+        }
+    }
+}
