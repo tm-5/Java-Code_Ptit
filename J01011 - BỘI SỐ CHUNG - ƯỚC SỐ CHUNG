@@ -1,0 +1,20 @@
+package javaapplication1;
+import java.util.*;
+    
+public class JavaApplication1 {
+    public static void main(String[] args) {
+    Scanner s= new Scanner(System.in);
+        long t=s.nextLong();
+        while(t-->0){
+            long m=s.nextLong();
+            long n=s.nextLong();
+            long a=m;
+            long b=n;
+            while(a!=b){
+                if(b>a) b-=a;
+                else a-=b;
+            }
+            System.out.println((m*n)/a+" "+a);
+        }  
+    }
+}
