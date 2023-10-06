@@ -1,0 +1,68 @@
+
+package javaapplication2;
+import java.util.*;
+
+class NhanVien{
+    private String name,date,address,tax,day;
+    private String gender;
+    
+    public NhanVien(){
+    }
+    public void input(){
+        Scanner s=new Scanner(System.in);
+
+        this.name=s.nextLine();
+        this.gender=s.nextLine();
+        this.date=s.nextLine();
+        
+        this.address=s.nextLine();
+        this.tax=s.nextLine();
+        this.day=s.nextLine();
+    }
+    public String getName(){
+        return this.name;
+    }
+    public String getDay(){
+        return this.day;
+    }
+    public String getGender(){
+        return this.gender;
+    }
+    public String getAddress(){
+        return this.address;
+    }
+    public String getTax(){
+        return this.tax;
+    }
+    public String getDate(){
+        return this.date;
+    }
+    public String getFormatedDate(){
+        String n=getDate();
+        String m="";
+        if(n.charAt(1)=='/'){
+            n="0"+n;
+        }
+        m+=n.substring(0,3);
+        if(n.length()==9){
+            m+="0";
+            m+=n.substring(n.length()-6,n.length());
+        }
+        else{
+            m+=n.substring(n.length()-7,n.length());
+        }
+        return m;
+    }
+    public void hienThi(){
+        System.out.print("00001 " +getName()+" "+getGender()+" " +getDate()+" "+getAddress()+" "+getTax()+" "+getDay());
+    }
+}
+
+public class JavaApplication2 {    
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+        NhanVien t=new NhanVien();
+        t.input();
+        t.hienThi();    
+    }
+}
