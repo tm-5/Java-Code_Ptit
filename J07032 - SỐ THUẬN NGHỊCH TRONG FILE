@@ -1,0 +1,46 @@
+package javaapplication2;
+import java.util.*;
+import java.io.*;
+
+public class JavaApplication2 {
+    public static boolean tn(String n){
+        if(n.length()<2 || n.length()%2==0) return false;
+        for(int i=0;i<(int)n.length()/2+1;i++){
+            if(n.charAt(i)!=n.charAt(n.length()-i-1)) return false;
+            if((n.charAt(i)-'0')%2==0 || (n.charAt(n.length()-i-1)-'0')%2==0) return false;            
+        }
+        return true;
+    }
+    
+    public static void main(String[] args) throws IOException, ClassNotFoundException{
+        
+        FileInputStream ip=new FileInputStream("DATA1.in");
+        ObjectInputStream d=new ObjectInputStream(ip);
+        ArrayList<Integer> a=(ArrayList<Integer>)d.readObject();
+        FileInputStream ip1=new FileInputStream("DATA2.in");
+        ObjectInputStream d1=new ObjectInputStream(ip1);        
+        ArrayList<Integer> b=(ArrayList<Integer>)d1.readObject();
+
+        int f[]=new int[1000002];
+        int m[]=new int[1000002];
+        for(int i:a){
+            if(tn(String.format("%s", i))){
+                f[i]++;
+            }
+        }
+        for(int i:b){
+            if(tn(String.format("%s",i))){
+                m[i]++;
+            }
+        }
+        int t=0;
+        for(int i=10;i<1000002;i++){
+            if(f[i]!=0 && m[i]!=0 && t!=10){
+                System.out.println(i+" "+(f[i]+m[i]));
+                t++;
+            }
+        }
+        d.close();
+        d1.close();
+    }
+}
