@@ -1,0 +1,93 @@
+package javaapplication2;
+import java.util.*;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class ThiSinh implements Comparable<ThiSinh>{
+    private String ten,ma;
+    private double t,l,h,tong,kv;
+    public ThiSinh(String m,String ten,String d1,String d2, String d3){
+        this.ma=m;
+        this.ten=chuanHoa(ten);
+        this.t=Double.parseDouble(d1);
+        this.l=Double.parseDouble(d2);
+        this.h=Double.parseDouble(d3);
+        this.kv=diemCong();
+        this.tong=t*2+l+h+kv;
+    }
+    
+    private String chuanHoa(String n){
+        n=n.trim();
+        n=n.toLowerCase();
+        String a[]=n.split("\\s+");
+        String k="";
+        for(int i=0;i<a.length;i++){
+            String x=""; x+=a[i].charAt(0);
+            x=x.toUpperCase();
+            x+=a[i].substring(1,a[i].length());
+            k+=x;
+            k+=" ";
+        }
+        return k;
+    }
+    public double getTong(){
+        return this.tong;
+    }
+     private String formatDiem(double k){
+        if(k%1==0) 
+            return String.format("%d",(int)k);
+        return String.format("%.1f",k);
+    }    
+    private double diemCong(){
+        if(ma.charAt(2)=='1') return 0.5;
+        if(ma.charAt(2)=='2') return 1;
+        return 2.5;
+    }
+
+    @Override
+    public String toString(){
+        String k=formatDiem(kv);
+        String t=formatDiem(tong);
+        return ma+" "+ten+k+" "+t;
+    }
+    @Override
+    public int compareTo(ThiSinh s){
+        if(this.tong>s.tong) return -1;
+        if(this.tong==s.tong){
+            if(this.ma.compareTo(s.ma)<0) return -1;
+            return 1;
+        }
+        return 1;
+    }
+}
+
+public class JavaApplication2 {
+    public static void main(String[] args) throws FileNotFoundException {
+        File f=new File("THISINH.in");
+        Scanner s=new Scanner(f);
+        int n=Integer.parseInt(s.nextLine());
+        ArrayList<ThiSinh> a=new ArrayList<>();
+        while(n-->0){
+            ThiSinh nv=new ThiSinh(s.nextLine(),s.nextLine(),s.nextLine(),s.nextLine(),s.nextLine());
+            a.add(nv);
+        }
+        Collections.sort(a);
+        int k=Integer.parseInt(s.nextLine());
+        double diemchuan=0;
+        for(int i=0;i<k;i++){
+            diemchuan=a.get(i).getTong();
+        }
+        System.out.println(String.format("%.1f",diemchuan));
+        for(int i=0;i<a.size();i++){
+            if(a.get(i).getTong()>=diemchuan){
+                System.out.print(a.get(i));
+                System.out.println(" TRUNG TUYEN");
+            }
+            else{
+                System.out.print(a.get(i));
+                System.out.println(" TRUOT");
+            }
+        }
+    }
+}
