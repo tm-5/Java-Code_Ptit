@@ -1,0 +1,73 @@
+package javaapplication2;
+import java.util.*;
+import java.io.*;
+import java.math.BigInteger;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class SV implements Comparable<SV>{
+    private static int id=1;
+    private String ten,ma;
+    private double tong,d1,d2,d3;
+    public SV(String t,String d1,String d2,String d3){
+        this.ma="SV"+String.format("%02d",id++);
+        this.ten=chuanHoa(t);
+        this.d1=Double.parseDouble(d1);
+        this.d2=Double.parseDouble(d2);
+        this.d3=Double.parseDouble(d3);
+        this.tong=tinhDiem();
+    }
+    private double tinhDiem(){
+        double t1=(d1);
+        double t2=(d2);
+        double t3=(d3);
+        double t=t1*25/100+t2*35/100+t3*40/100;
+        return t;
+    }
+    private String chuanHoa(String n){
+        String k=n;
+        k=k.trim();
+        k=k.toLowerCase();
+        String[]a=k.split("\\s+");
+        String m="";
+        for(int i=0;i<a.length;i++){       
+            String l=""; l+=a[i].charAt(0);
+            l=l.toUpperCase();
+            m+=l;
+            m+=a[i].substring(1,a[i].length());
+            m+=" ";
+        }
+        return m.substring(0,m.length()-1);
+    }
+    private String tt(){
+        if(tong>=6.5 && tong<8) return "KHA";
+        if(tong>=5 && tong<6.5) return "TRUNG BINH";
+        if(tong<5) return "KEM";
+        return "GIOI";
+    }
+    
+    @Override
+    public String toString(){
+        return ma+" "+ten+" "+String.format("%.2f",tong)+" "+tt();
+    }   
+    @Override
+    public int compareTo(SV p){
+        if(this.tong>p.tong) return -1;
+        return 1;
+    }
+}
+
+public class JavaApplication2 {
+    public static void main(String[] args) throws IOException {
+        ArrayList<SV> ds = new ArrayList<>();
+        Scanner in = new Scanner(new File("BANGDIEM.in"));
+        int n = Integer.parseInt(in.nextLine());
+        while(n-->0){
+            ds.add(new SV(in.nextLine(),in.nextLine(),in.nextLine(),in.nextLine()));
+        }
+        Collections.sort(ds);
+        for(SV tmp : ds){
+            System.out.println(tmp);
+        }
+    }
+}
