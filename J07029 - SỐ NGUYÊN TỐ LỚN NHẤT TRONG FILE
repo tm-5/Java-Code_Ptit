@@ -1,0 +1,33 @@
+package javaapplication4;
+import java.util.*;
+import java.io.*;
+
+public class JavaApplication4 {
+    public static int snt(int n){
+        if(n<2) return 0;
+        for(int i=2;i<(int)Math.sqrt(n)+1;i++){
+            if(n%i==0) return 0;
+        }
+        return 1;
+    }
+    
+    public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
+        FileInputStream ip=new FileInputStream("DATA.in");
+        ObjectInputStream d=new ObjectInputStream(ip);
+        int[] m=new int[1000003];
+        ArrayList<Integer> a=(ArrayList<Integer>) d.readObject();
+        for(int x: a){
+            if(snt(x)==1)
+                m[x]++;
+        }
+        int dem=0;        
+        for(int i=1000002;i>=0;i--){
+            if(dem==10) break;
+            if(m[i]!=0){
+                System.out.println(i+" "+m[i]);
+                dem++;
+            }
+        }
+        d.close();
+    }    
+}
