@@ -1,0 +1,81 @@
+package javaapplication3;
+import java.util.*;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class MonHoc implements Comparable<MonHoc>{
+    private String ma,ten,type;
+    private int muc,t,s;
+    private static int id=1;
+    private int trong,ngoai,tong,vat;
+    public MonHoc(String n,String d){
+        this.ma="KH"+String.format("%02d",id++);
+        this.ten=chuanHoa(n);
+        String[] a=d.split("\\s+");
+        this.type=a[0];
+        this.t=Integer.parseInt(a[1]);
+        this.s=Integer.parseInt(a[2]);
+        this.muc=dinhMuc(a[0]);
+        this.tong=tinhTien();
+    }
+    private String chuanHoa(String n){
+        String k=n;
+        k=k.trim();
+        k=k.toLowerCase();
+        String[]a=k.split("\\s+");
+        String m="";
+        for(int i=0;i<a.length;i++){
+            String l=""; l+=a[i].charAt(0);
+            l=l.toUpperCase();
+            m+=l;
+            m+=a[i].substring(1,a[i].length());
+            m+=" ";
+        }
+        return m.substring(0,m.length()-1);
+    }
+    
+    private int dinhMuc(String n){
+        if(n.compareTo("A")==0) return 100;
+        if(n.compareTo("C")==0) return 200;
+        return 500;
+    }
+    private int tinhTien(){
+        int dung=s-t;
+        int vuot=0;
+        if(dung>muc){
+            vuot=dung-muc;
+            dung=muc;
+        }
+        ngoai=vuot*1000;
+        vat=ngoai*5/100;
+        trong=dung*450;
+        return trong+ngoai+vat;
+    }
+    @Override 
+    public String toString(){
+        return ma+" "+ten+" "+trong+" "+ngoai+" "+vat+" "+tong;
+    }    
+    @Override
+    public int compareTo(MonHoc p) {
+        if(this.tong>p.tong) return -1;
+        return 1;
+    }  
+}
+
+public class JavaApplication3 {
+    public static void main(String[] args) throws FileNotFoundException {
+        File f=new File("KHACHHANG.in");
+        Scanner s=new Scanner(f);
+        int t=Integer.parseInt(s.nextLine());
+        ArrayList<MonHoc>a=new ArrayList<>() ;
+        while(t-->0){ 
+            MonHoc sv=new MonHoc(s.nextLine(),s.nextLine());
+            a.add(sv);
+        }
+        Collections.sort(a);
+        for(MonHoc sv:a){
+            System.out.println(sv);
+        }
+    }
+}
