@@ -1,0 +1,55 @@
+package javaapplication4;
+import java.util.*;
+import java.io.*;
+
+class MatHang implements Comparable<MatHang>{
+    private String ten,dv,ma;
+    private int mua,ban,loi;
+    private static int id=1;
+    public void input(Scanner s){
+        s.nextLine();
+        this.ten=s.nextLine();
+        this.dv=s.nextLine();
+        this.mua=s.nextInt();
+        this.ban=s.nextInt();
+        this.ma="MH"+String.format("%03d",id++);
+        this.loi=ban-mua;
+    }
+    public int cmp(){
+        return loi;
+    }
+    public String cmp1(){
+        return ma;
+    }
+    @Override
+    public String toString(){
+        return ma+" "+ten+" "+dv+" "+mua+" "+ban+" "+loi;
+    }
+    
+    @Override
+    public int compareTo(MatHang t){
+        if(this.cmp()<t.cmp()) return 1;
+        if(this.cmp()==t.cmp()){
+            if(this.ma.compareTo(t.ma)>0) return 1;
+            else return -1;
+        }
+        else return -1;
+    }
+}
+
+public class JavaApplication4 {
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in) ;
+        int t=s.nextInt();
+        ArrayList<MatHang> a=new ArrayList<>();
+        while(t-->0){
+            MatHang n=new MatHang();
+            n.input(s);
+            a.add(n);
+        }
+        Collections.sort(a); 
+        for(MatHang i:a){
+            System.out.println(i);
+        }
+    }
+}
