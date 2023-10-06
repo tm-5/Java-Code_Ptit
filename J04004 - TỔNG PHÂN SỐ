@@ -1,0 +1,42 @@
+package javaapplication2;
+import java.util.*;
+class PhanSo {
+    private long x,y;
+    public PhanSo(long x,long y){
+        this.x=x;
+        this.y=y;
+    }
+    public long getX(){
+        return this.x;
+    }
+    public long getY(){
+        return this.y;
+    }
+}
+
+public class JavaApplication2 {
+
+    public static long getLCM(long a,long b){
+            return a*b/getGCD(a,b);
+        }
+    public static long getGCD(long a,long b){
+        while(a!=0){
+            long k=a;
+            a=b%a;
+            b=k;
+        }
+        return b;
+    }
+
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+        PhanSo p=new PhanSo(s.nextLong(),s.nextLong());
+        PhanSo q=new PhanSo(s.nextLong(),s.nextLong());
+        long tu=p.getX()*q.getY()+q.getX()*p.getY();
+        long mau=p.getY()*q.getY();
+        long gcd=getGCD(tu,mau);
+        tu/=gcd;
+        mau/=gcd;
+        System.out.println(tu+"/"+mau);
+    }
+}
