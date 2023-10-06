@@ -1,0 +1,17 @@
+package javaapplication3;
+import java.math.BigInteger;
+import java.util.*;
+
+public class JavaApplication3 {
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+        int t=s.nextInt();
+        while(t-->0){
+            BigInteger a=s.nextBigInteger();
+            BigInteger b=s.nextBigInteger();
+                BigInteger k=a.gcd(b);
+                System.out.println(k);
+        }
+    }
+    
+}
