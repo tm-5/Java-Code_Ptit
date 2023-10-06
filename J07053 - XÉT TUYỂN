@@ -1,0 +1,84 @@
+package javaapplication7;
+import java.util.*;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class MonHoc implements Comparable<MonHoc>{
+    private String ma,ten,ns,rank;
+    private int tuoi,tong;
+    private double d1,d2,thuong;
+    private static int id=1;
+    public MonHoc(String a,String b,String c,String d) throws ParseException{
+        this.ma="PH"+String.format("%02d",id++);
+        this.ten=chuanHoa(a);
+        this.ns=chuan(b);
+        this.d1=Double.parseDouble(c);
+        this.d2=Double.parseDouble(d);
+        this.thuong=tinhThuong();
+        this.tuoi=2021-Integer.parseInt(ns.substring(6,10));
+        this.tong=tinhTong();
+        this.rank=xepHang();
+    }
+    private double tinhThuong(){
+        if(d1>=8 && d2>=8) return 1;
+        if(d1>=7.5 && d2>=7.5) return 0.5;
+        return 0;
+    }
+    private int tinhTong(){
+        double x=(d1+d2)/2+thuong;
+        if(x>10) x=10;
+        return (int) Math.round(x);
+    }
+    
+    private String chuan(String n) throws ParseException{
+        SimpleDateFormat s=new SimpleDateFormat("dd/MM/yyyy");
+        return s.format(s.parse(n));
+    }
+    
+    private String xepHang(){
+        if(tong>=9) return "Xuat sac";
+        else if(tong>=8) return "Gioi";
+        else if(tong>=7) return "Kha";
+        else if(tong>=5) return "Trung binh";
+        return "Truot";
+    }
+    
+    private String chuanHoa(String n){
+        String k=n;
+        k=k.trim();
+        k=k.toLowerCase();
+        String[]a=k.split("\\s+");
+        String m="";
+        for(int i=0;i<a.length;i++){
+            String l=""; l+=a[i].charAt(0);
+            l=l.toUpperCase();
+            m+=l;
+            m+=a[i].substring(1,a[i].length());
+            m+=" ";
+        }
+        return m.substring(0,m.length()-1);
+    }
+      
+    @Override 
+    public String toString(){
+        return ma+" "+ten+" "+tuoi+" "+tong+" "+rank;
+    }
+}
+
+public class JavaApplication7 {
+    public static void main(String[] args) throws FileNotFoundException, ParseException {
+        File f=new File("XETTUYEN.in");
+       Scanner s=new Scanner(f);
+        int t=Integer.parseInt(s.nextLine());
+        ArrayList<MonHoc>a=new ArrayList<>() ;
+        while(t-->0){ 
+            MonHoc sv=new MonHoc(s.nextLine(),s.nextLine(),s.nextLine(),s.nextLine());
+            a.add(sv);
+        }
+    //    Collections.sort(a);
+        for(MonHoc sv:a){
+                System.out.println(sv);
+        }
+    }
+}
