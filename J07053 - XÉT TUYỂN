@@ -4,12 +4,12 @@ import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-class MonHoc implements Comparable<MonHoc>{
+class PH implements Comparable<PH>{
     private String ma,ten,ns,rank;
     private int tuoi,tong;
     private double d1,d2,thuong;
     private static int id=1;
-    public MonHoc(String a,String b,String c,String d) throws ParseException{
+    public PH(String a,String b,String c,String d) throws ParseException{
         this.ma="PH"+String.format("%02d",id++);
         this.ten=chuanHoa(a);
         this.ns=chuan(b);
@@ -71,13 +71,13 @@ public class JavaApplication7 {
         File f=new File("XETTUYEN.in");
        Scanner s=new Scanner(f);
         int t=Integer.parseInt(s.nextLine());
-        ArrayList<MonHoc>a=new ArrayList<>() ;
+        ArrayList<PH>a=new ArrayList<>() ;
         while(t-->0){ 
-            MonHoc sv=new MonHoc(s.nextLine(),s.nextLine(),s.nextLine(),s.nextLine());
+            PH sv=new PH(s.nextLine(),s.nextLine(),s.nextLine(),s.nextLine());
             a.add(sv);
         }
     //    Collections.sort(a);
-        for(MonHoc sv:a){
+        for(PH sv:a){
                 System.out.println(sv);
         }
     }
