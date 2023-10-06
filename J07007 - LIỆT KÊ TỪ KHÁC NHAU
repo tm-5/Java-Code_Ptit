@@ -1,0 +1,48 @@
+package javaapplication4;
+import java.util.*;
+import java.io.*;
+
+class WordSet{
+    private File f;
+    private TreeSet<String> st;
+    public WordSet(String n) throws FileNotFoundException{
+        File a=new File(n);
+        this.f=a;
+        this.st=addSet(f);
+    }
+    private TreeSet addSet(File f) throws FileNotFoundException{
+        Scanner s=new Scanner(f);
+        TreeSet<String> ts=new TreeSet<>();
+        while(s.hasNextLine()){
+            String x=s.nextLine();
+            String[]a=x.split("\\s+");
+            for(String i:a){
+                i=i.toLowerCase();
+                ts.add(i);
+            }
+        }
+        return ts;
+    }
+    
+    @Override
+    public String toString(){
+        String k="";
+        for(String i:this.st){
+            k+=i;
+            k+="\n";
+        }
+        return k;
+    }
+}
+
+public class JavaApplication4 {
+    
+    public static void main(String[] args) throws IOException {
+        WordSet ws = new WordSet("VANBAN.in");
+        System.out.println(ws);
+    }
+    public static void main5847528(String[] args) throws IOException {
+        WordSet ws = new WordSet("VANBAN.in");
+        System.out.println(ws);
+    }    
+}
