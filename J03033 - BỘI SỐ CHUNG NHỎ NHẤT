@@ -1,0 +1,24 @@
+
+package javaapplication3;
+import java.util.*;
+import java.math.BigInteger;
+
+public class JavaApplication3 {
+    
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        int t = s.nextInt();
+        while(t-- >0){
+            BigInteger a=s.nextBigInteger();
+            BigInteger b=s.nextBigInteger();
+            if(a.compareTo(b)<0){
+                BigInteger temp=a;
+                a=b;
+                b=temp;
+            }
+            BigInteger k=a.multiply(b);
+            BigInteger m=a.gcd(b);
+            System.out.println(k.divide(m));
+        }
+    }
+}
