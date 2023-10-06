@@ -1,0 +1,36 @@
+package javaapplication2;
+import java.util.*;
+import java.io.*;
+import java.math.BigInteger;
+import java.text.ParseException;
+
+public class JavaApplication2 {
+    public static void main(String[] args) throws IOException, ClassNotFoundException{    
+        FileInputStream ip=new FileInputStream("NHIPHAN.in");
+        ObjectInputStream d=new ObjectInputStream(ip);
+        ArrayList<String> a=(ArrayList<String>)d.readObject();
+        File f=new File("VANBAN.in");
+        Scanner s=new Scanner(f);
+        
+        Set<String> m=new LinkedHashSet<>();
+        Set<String> e=new TreeSet<>();
+        for(String i:a){
+            String[] k=i.toLowerCase().split("\\s+");
+            for(String j:k){
+                e.add(j);
+            }
+        }
+        while(s.hasNextLine()){
+            String k=s.nextLine().toLowerCase().trim();
+            String[] b=k.split("\\s+");
+            for(String i:b) 
+                m.add(i);
+        }
+        for(String j:m){
+            if(e.contains(j)){
+                System.out.println(j);
+            }
+        }
+        d.close();
+    }
+}
