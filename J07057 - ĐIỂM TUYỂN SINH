@@ -1,0 +1,76 @@
+package javaapplication2;
+import java.util.*;
+import java.io.*;
+import java.math.BigInteger;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class TS implements Comparable<TS>{
+    private static int id=1;
+    private String d,ten,dt,ma,kv;
+    private double tong;
+    public TS(String t,String d,String p,String kv){
+        this.ma="TS"+String.format("%02d",id++);
+        this.ten=chuanHoa(t);
+        this.d=d;
+        this.dt=p;
+        this.kv=kv;
+        this.tong=tinhDiem();
+    }
+    private double tinhDiem(){
+        double t=Double.parseDouble(d);
+        if(this.kv.compareTo("1")==0) t+=1.5;
+        if(this.kv.compareTo("2")==0) t+=1;
+        if(this.dt.compareTo("Kinh")!=0) t+=1.5;
+        return t;
+    }
+    private String chuanHoa(String n){
+        String k=n;
+        k=k.trim();
+        k=k.toLowerCase();
+        String[]a=k.split("\\s+");
+        String m="";
+        for(int i=0;i<a.length;i++){
+            
+            String l=""; l+=a[i].charAt(0);
+            l=l.toUpperCase();
+            m+=l;
+            m+=a[i].substring(1,a[i].length());
+            m+=" ";
+        }
+        return m.substring(0,m.length()-1);
+    }
+    
+    @Override
+    public String toString(){
+        String tt="Truot";
+        if(tong>=20.5) tt="Do";
+        return ma+" "+ten+" "+String.format("%.1f",tong)+" "+tt;
+    }
+    
+    @Override
+    public int compareTo(TS p){
+        if(this.tong>p.tong) return -1;
+        else if(this.tong==p.tong){
+            if(this.ma.compareTo(p.ma)<0) return -1;
+            return 1;
+        }
+        return 1;
+    }
+}
+
+
+public class JavaApplication2 {
+    public static void main(String[] args) throws IOException {
+        ArrayList<TS> ds = new ArrayList<>();
+        Scanner in = new Scanner(new File("THISINH.in"));
+        int n = Integer.parseInt(in.nextLine());
+        while(n-->0){
+            ds.add(new TS(in.nextLine(),in.nextLine(),in.nextLine(),in.nextLine()));
+        }
+        Collections.sort(ds);
+        for(TS tmp : ds){
+            System.out.println(tmp);
+        }
+    }
+}
