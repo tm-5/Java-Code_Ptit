@@ -1,0 +1,15 @@
+package javaapplication1;
+import java.util.*;
+
+public class NewClass {
+    public static void main(String[] args) {
+        Scanner s= new Scanner(System.in);
+        String n=s.next();
+        int dem=0;
+        for(int i=0;i<n.length();i++){
+            if(n.charAt(i)=='4' || n.charAt(i)=='7') dem++;
+        }
+        if(dem==4 || dem==7) System.out.println("YES");
+        else System.out.println("NO");
+    }
+}
