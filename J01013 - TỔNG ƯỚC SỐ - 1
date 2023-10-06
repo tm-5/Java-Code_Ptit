@@ -1,0 +1,31 @@
+package javaapplication5;
+import java.util.*;
+import java.io.*;
+
+public class JavaApplication5 {
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+        int t=s.nextInt();
+        long tong=0;
+        int[] f=new int[2000002];
+        for(int i=2;i*i<2000002;i++){
+            if(f[i]==0){
+                for(int j=2;j*i<2000002;j++){
+                    f[j*i]=i;
+                }
+            } 
+        }
+        for(int i=2;i<2000002;i++){
+            if(f[i]==0) f[i]=i;
+        }
+        
+        while(t-->0){
+            int n=s.nextInt();
+            while(n>1){
+                tong+=f[n];
+                n/=f[n];
+            }
+        }   
+        System.out.println(tong);
+    }
+}
