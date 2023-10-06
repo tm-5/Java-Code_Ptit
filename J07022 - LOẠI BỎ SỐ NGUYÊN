@@ -1,0 +1,29 @@
+package javaapplication4;
+import java.util.*;
+import java.io.*;
+
+public class JavaApplication4 {
+    public static void main(String[] args) throws FileNotFoundException, IOException{
+        File f=new File("DATA.in");
+        Scanner s=new Scanner(f);         
+        ArrayList<String> a=new ArrayList<>();
+        while(s.hasNextLine()){    
+            String k=s.nextLine();                   
+            String[] b =k.split("\\s+");
+            for(String i:b){
+                
+                try{
+                    int m=Integer.parseInt(i);
+                }
+                catch(NumberFormatException e)
+                {
+                    a.add(i);
+                }
+            }
+        }
+        Collections.sort(a);
+        for(String i: a){
+            System.out.print(i+" ");
+        }
+    }    
+}
