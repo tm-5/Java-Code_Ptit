@@ -1,0 +1,62 @@
+
+package javaapplication2;
+import java.util.*;
+
+class SinhVien{
+    private String name,date,grade;
+    private double p;
+    public SinhVien(){
+        this.date="";
+        this.name="";
+        this.grade="";
+        this.p=0;
+    }
+    public void input(String n,String g,String d,double p){
+        this.name=n;
+        this.date=d;
+        this.grade=g;
+        this.p=p;
+    }
+    public String getName(){
+        return this.name;
+    }
+    public String getDate(){
+        return this.date;
+    }
+    public String getFormatedDate(){
+        String n=getDate();
+        String m="";
+        if(n.charAt(1)=='/'){
+            n="0"+n;
+        }
+        m+=n.substring(0,3);
+        if(n.length()==9){
+            m+="0";
+            m+=n.substring(n.length()-6,n.length());
+        }
+        else{
+            m+=n.substring(n.length()-7,n.length());
+        }
+        return m;
+    }
+    public String getGrade(){
+        return this.grade;
+    }
+    public double getPoint(){
+        return this.p;
+    }
+    public void hienThi(){
+        System.out.print("B20DCCN001 " +getName()+" "+getGrade()+" " +getFormatedDate()+" ");
+        System.out.printf("%.2f",getPoint());
+    }
+}
+
+public class JavaApplication2 { 
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+        SinhVien t=new SinhVien();
+        t.input(s.nextLine(),s.next(),s.next(),s.nextDouble());
+        t.hienThi();
+        
+    }
+}
