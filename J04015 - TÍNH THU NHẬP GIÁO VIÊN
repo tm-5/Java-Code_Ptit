@@ -1,0 +1,48 @@
+package javaapplication2;
+import java.util.*;
+
+class GiaoVien{
+    private String ma,name;
+    private int salary;
+    public void input(){
+        Scanner s=new Scanner(System.in);
+        this.ma=s.nextLine();
+        this.name=s.nextLine();
+        this.salary=s.nextInt();
+    }
+    
+    public String getMa(){
+        return this.ma;
+    }
+    public String getName(){
+        return this.name;
+    }
+    public int getSalary(){
+        return this.salary;
+    }
+    public int phuCap(){
+        String m=getMa().substring(0,2);
+        if(m.equals("HP")) return 900000;
+        if(m.equals("HT")) return 2000000;
+        else 
+            return 500000;
+    }
+    public int maNgach(){
+        String m=getMa().substring(2);
+        int p=Integer.parseInt(m);
+        return p;
+    }
+    public void hienThi(){
+        int s=phuCap()+maNgach()*getSalary();
+        System.out.println(getMa()+" "+getName()+" "+maNgach()+" "+ phuCap()+" "+s);
+    }   
+}
+
+public class JavaApplication2 {   
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+        GiaoVien t=new GiaoVien();
+        t.input();
+        t.hienThi();    
+    }
+}
