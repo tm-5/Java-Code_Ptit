@@ -1,0 +1,30 @@
+package javaapplication2;
+import java.util.*;
+
+public class JavaApplication2 {
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+        int t=s.nextInt();
+        while(t-->0){
+            int n=s.nextInt();
+            int tong=0;
+            int[]a=new int[n+1];
+            for(int i=1;i<=n;i++){
+                a[i]=s.nextInt();
+                tong+=a[i];
+            }
+            
+            int kq=-1;
+            int dem=0;
+            for(int i=1;i<=n;i++){
+                   if(dem*2+a[i]==tong){
+                        kq=i;
+                        break;
+                   }
+                   dem+=a[i];
+               }   
+            System.out.println(kq);
+        }
+    }
+    
+}
