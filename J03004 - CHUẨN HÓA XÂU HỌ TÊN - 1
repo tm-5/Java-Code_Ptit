@@ -1,0 +1,35 @@
+package javaapplication3;
+import java.util.*;
+
+public class JavaApplication3 {
+    public static boolean snt(long n){
+        if(n<2) return false;
+        for(long i=2;i<=(long) Math.sqrt(n)+1;i++){
+            if(n%i==0) return false;
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+        int t=s.nextInt();
+        s.nextLine();
+        while(t-->0){
+            String n=s.nextLine();
+            n=n.trim();
+            String k[]=n.split("\\s+");
+            for(String i:k){
+                i=i.trim();
+                i=i.toLowerCase();
+                String c="";
+                c+=i.charAt(0);
+                String d=c.toUpperCase();
+                for(int j=1;j<i.length();j++){
+                    d+=i.charAt(j);
+                }
+                System.out.print(d+" ");
+            }
+            System.out.println("");
+        }
+    } 
+}
