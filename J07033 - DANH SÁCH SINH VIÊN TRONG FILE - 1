@@ -1,0 +1,58 @@
+package javaapplication3;
+import java.util.*;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class SinhVien implements Comparable<SinhVien>{
+    private String msv,ten,lop,mail;
+    public SinhVien(String ma,String ten,String lop,String mail){
+        this.msv=ma;
+        this.ten=ten;
+        this.lop=lop;
+        this.mail=mail;
+    }
+    
+    private String chuanHoa(){
+        ten=ten.trim();
+        ten=ten.toLowerCase();
+        String a[]=ten.split("\\s+");
+        String k="";
+        for(int i=0;i<a.length;i++){
+            String x=""; x+=a[i].charAt(0);
+            x=x.toUpperCase();
+            x+=a[i].substring(1,a[i].length());
+            k+=x;
+            k+=" ";
+        }
+        return k;
+    }
+
+    @Override 
+    public String toString(){
+        return msv+" "+chuanHoa()+lop+" "+mail;
+    }    
+    @Override
+    public int compareTo(SinhVien o1) {
+        if(this.msv.compareTo(o1.msv)<0) return -1;
+        return 1;
+    }    
+}
+
+public class JavaApplication3 {
+    public static void main(String[] args) throws FileNotFoundException {
+        File f=new File("SINHVIEN.in");
+        Scanner s=new Scanner(f);
+        int n=s.nextInt();
+        s.nextLine();
+        ArrayList<SinhVien>a=new ArrayList<>() ;
+        for(int i=0;i<n;i++){
+            SinhVien sv=new SinhVien(s.nextLine(),s.nextLine(),s.nextLine(),s.nextLine());
+            a.add(sv);
+        }
+        Collections.sort(a);
+        for(SinhVien sv:a){
+            System.out.println(sv);
+        }
+    }
+}
