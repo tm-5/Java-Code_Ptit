@@ -1,0 +1,67 @@
+package javaapplication2;
+import java.util.*;
+import java.io.*;
+import java.math.BigInteger;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class ThiSinh implements Comparable<ThiSinh>{
+    private String ten,ma,lop,ns;
+    private double d1,d2,d3;
+    public ThiSinh(String m,String t, String l,String d1,String d2,String d3){
+        this.ten=t;
+        this.ma=m;
+        this.lop=l;
+        this.d1=Double.parseDouble(d1);
+                this.d2=Double.parseDouble(d2);
+        this.d3=Double.parseDouble(d3);
+
+    }
+    
+    private String chuanHoa(String n){
+        n=n.trim();
+        n=n.toLowerCase();
+        String a[]=n.split("\\s+");
+        String k="";
+        for(int i=0;i<a.length;i++){
+            String x=""; x+=a[i].charAt(0);
+            x=x.toUpperCase();
+            x+=a[i].substring(1,a[i].length());
+            k+=x;
+            k+=" ";
+        }
+        return k;
+    }
+    
+    
+    @Override
+    public String toString(){
+        return ma+" "+ten+" "+lop+" "+String.format("%.1f",d1)+" "+String.format("%.1f",d2)+" "+String.format("%.1f",d3);
+    }
+    
+    
+    @Override
+    public int compareTo(ThiSinh s){
+        if(this.ma.compareTo(s.ma)<0) return -1;
+        return 1;
+    }
+}
+
+
+public class JavaApplication2 {
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner s=new Scanner(System.in);
+        int n=Integer.parseInt(s.nextLine());
+        ArrayList<ThiSinh> a=new ArrayList<>();
+        while(n-->0){
+            ThiSinh nv=new ThiSinh(s.nextLine(),s.nextLine(),s.nextLine(),s.nextLine(),s.nextLine(),s.nextLine());
+            a.add(nv);
+        }
+        int tt=1;
+        Collections.sort(a);
+        for(ThiSinh k:a){
+            System.out.print(tt+++" ");
+            System.out.println(k);
+        }
+    }
+}
