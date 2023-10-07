@@ -1,0 +1,57 @@
+package javaapplication2;
+import java.util.*;
+
+class NhanVien{
+    private String ma,name;
+    private int salary,n;
+    
+    public void input(){
+        Scanner s=new Scanner(System.in);
+        
+        this.name=s.nextLine();
+        this.salary=s.nextInt();
+        this.n=s.nextInt();
+        this.ma=s.next();
+    }
+    
+    public String getMa(){
+        return this.ma;
+    }
+    public String getName(){
+        return this.name;
+    }
+    public int getSalary(){
+        return this.salary;
+    }
+    public int bonus(){
+        if(this.n>=25) return 20;
+        else if(this.n>=22 && this.n<25 ) return 10;
+        else return 0;
+    }
+    public int getN(){
+        return this.n;
+    }
+    public int getPC(){
+        if(getMa().equals("GD")) return 250000;
+        if(getMa().equals("PGD")) return 200000;
+        if(getMa().equals("TP")) return 180000;
+        else 
+            return 150000;
+    }
+    public void hienThi(){
+        int luong=getSalary()*getN();
+        int thuong=bonus()*luong/100;
+        int tong=thuong+luong+getPC();
+        System.out.println("NV01 "+getName()+" "+getSalary()*getN()+" "+thuong+" "+getPC()+" "+tong);
+    }
+    
+}
+
+public class JavaApplication2 {    
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+        NhanVien n=new NhanVien();
+        n.input();
+        n.hienThi();
+    }
+}
