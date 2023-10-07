@@ -1,0 +1,47 @@
+
+package javaapplication3;
+import java.util.*;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class SanPham implements Comparable<SanPham>{
+    private String ma,ten,nhom;
+    private double mua,ban,loi;
+    private static int id=1;
+    public SanPham(String ten,String nhom,double mua,double ban){
+        this.ma=String.format("%d",id++);
+        this.ten=ten;
+        this.nhom=nhom;
+        this.mua=mua;
+        this.ban=ban;
+        this.loi=ban-mua;
+    }
+    
+    @Override 
+    public String toString(){
+        return ma+" "+ten+" "+nhom+" "+String.format("%.2f", loi);
+    }    
+    @Override
+    public int compareTo(SanPham o1) {
+        if(this.loi>o1.loi) return -1;
+        else return 1;
+    }    
+}
+
+public class JavaApplication3 {
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner s=new Scanner(System.in);
+        int n=s.nextInt();       
+        ArrayList<SanPham>a=new ArrayList<>() ;
+        for(int i=0;i<n;i++){ 
+            s.nextLine();
+            SanPham sv=new SanPham(s.nextLine(),s.nextLine(),s.nextDouble(),s.nextDouble());
+            a.add(sv);
+        }
+        Collections.sort(a);
+        for(SanPham sv:a){
+            System.out.println(sv);
+        }
+    }
+}
