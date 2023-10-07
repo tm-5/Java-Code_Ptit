@@ -1,0 +1,66 @@
+package javaapplication3;
+import java.util.*;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class MonHoc implements Comparable<MonHoc>{
+    private String ma,ten,chuc;
+    private int l,ngay,phu_cap,luongThang,bonus,tong;
+    private static int id=1;
+    public MonHoc(String ten,String ln,String n,String c){
+        this.ma="NV"+String.format("%02d",id++);
+        this.ten=ten;
+        this.l=Integer.parseInt(ln);
+        this.ngay=Integer.parseInt(n);
+        this.chuc=c;
+        this.phu_cap=phuCap(chuc);
+        this.luongThang=ngay*l;
+        this.bonus=tinhBonus();
+        this.tong=phu_cap+luongThang+bonus;
+    }
+    
+    public int getTong(){
+        return this.tong;
+    }
+    
+    private int tinhBonus(){
+        if(ngay>=25) return luongThang*20/100;
+        if(ngay>=22 && ngay<25) return luongThang/10;
+        return 0;
+    }
+
+    private int phuCap(String n){
+        if(n.equals("GD")) return 250000;
+        if(n.equals("PGD")) return 200000;
+        if(n.equals("TP")) return 180000;
+        return 150000;
+    }
+
+    @Override 
+    public String toString(){
+        return ma+" "+ten+" "+luongThang+" "+bonus+" "+phu_cap+" "+tong;
+    }  
+    @Override
+    public int compareTo(MonHoc p) {
+        if(this.ma.compareTo(p.ma)<0) return -1;
+        return 1;
+    }    
+}
+
+public class JavaApplication3 {
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner s=new Scanner(System.in);
+        int n=Integer.parseInt(s.nextLine());
+       
+        ArrayList<MonHoc>a=new ArrayList<>() ;
+        for(int i=0;i<n;i++){ 
+            MonHoc sv=new MonHoc(s.nextLine(),s.nextLine(),s.nextLine(),s.nextLine());
+            a.add(sv);
+        }
+    //    Collections.sort(a);
+            for(MonHoc sv:a){
+                System.out.println(sv);
+            }
+    }
+}
