@@ -1,0 +1,52 @@
+package javaapplication3;
+import java.util.*;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class SV implements Comparable<SV>{
+    private String ma,ten,lop,m;
+   
+    public SV(String ma,String ten,String l,String m){
+        this.ma=ma;
+        this.ten=ten;
+        this.lop=l;
+        this.m=m;
+    }
+    
+    public String getL(){
+        return this.lop;
+    }
+    
+    @Override 
+    public String toString(){
+        return ma+" "+ten+" "+lop+" "+m;
+    }    
+    @Override
+    public int compareTo(SV p) {
+        if(this.ma.compareTo(p.ma)<0) return -1;
+        return 1;
+    }    
+}
+
+public class JavaApplication3 {
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner s=new Scanner(System.in);
+        ArrayList<SV>a=new ArrayList<>() ;
+        int t=Integer.parseInt(s.nextLine());
+        while(t-->0){ 
+            SV sv=new SV(s.nextLine(),s.nextLine(),s.nextLine(),s.nextLine());
+            a.add(sv);
+        }
+        int q=Integer.parseInt(s.nextLine());
+        while(q-->0){
+            String k=s.nextLine();
+            System.out.println("DANH SACH SINH VIEN LOP "+k+":");
+            for(SV sv:a){
+                if(sv.getL().compareTo(k)==0)
+                    System.out.println(sv);
+            }
+        }
+        
+    }
+}
