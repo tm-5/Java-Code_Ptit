@@ -1,0 +1,40 @@
+package javaapplication3;
+import java.util.*;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+public class JavaApplication3 {
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner s=new Scanner(System.in);
+        int t=Integer.parseInt(s.nextLine());
+        while(t-->0){
+            String n=s.nextLine();
+            n=n.replace("I","a");
+            n=n.replace("V","b");
+            n=n.replace("X","c");
+            n=n.replace("L","d");
+            n=n.replace("C","e");
+            n=n.replace("D","f");
+            n=n.replace("M","g");
+            Map<Character,Integer> m= new TreeMap<>();
+            m.put('a', 1);
+            m.put('b', 5);
+            m.put('c', 10);
+            m.put('d', 50);
+            m.put('e', 100);
+            m.put('f', 500);
+            m.put('g', 1000);
+            int kq=m.get(n.charAt(n.length()-1));
+            for(int i=n.length()-1;i>=1;i--){
+                if(n.charAt(i)<=n.charAt(i-1)){
+                    kq+=m.get(n.charAt(i-1));
+                }
+                else{
+                    kq-=m.get(n.charAt(i-1));
+                }
+            }
+            System.out.println(kq);
+        }
+    }
+}
