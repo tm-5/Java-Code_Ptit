@@ -1,0 +1,76 @@
+package javaapplication7;
+import java.util.*;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class SV implements Comparable<SV>{
+    private String ma,ten,lop,dk;
+    private int d;
+    private static int id=1;
+    public SV(String a,String b,String c){
+        this.ma=a;
+        this.ten=b;
+        this.lop=c;
+    }
+
+    public String getMa(){
+        return this.ma;
+    }  
+    public void tinhDiem(String n){
+        int x=10;
+        for(int i=0;i<n.length();i++){
+            if(n.charAt(i)=='m') x--;
+            if(n.charAt(i)=='v') x-=2;
+        }
+        if(x<0) this.d=0;
+        else this.d=x;
+    }    
+    public String getLop(){
+        return this.lop;
+    }
+    
+    @Override 
+    public String toString(){
+        if(d!=0) this.dk="";
+        else this.dk="KDDK";
+        return ma+" "+ten+" "+lop+" "+d+" "+dk;
+    }
+    
+    @Override
+    public int compareTo(SV p) {
+        if(this.d<p.d) return -1;
+        return 1;
+    }
+    
+}
+
+public class JavaApplication7 {
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner s=new Scanner(System.in);
+        int t=Integer.parseInt(s.nextLine());
+        int n=t;
+        ArrayList<SV>a=new ArrayList<>() ;
+        while(t-->0){ 
+            SV sv=new SV(s.nextLine(),s.nextLine(),s.nextLine());
+            a.add(sv);
+        }
+        while(n-->0){
+            String[] b=s.nextLine().split("\\s+");
+            String k=b[0];
+            String m=b[1];
+            for( i:a){
+                if(i.getMa().equals(k)){
+                    i.tinhDiem(m);
+                }
+            }
+        }
+    //    Collections.sort(a);
+        String k=s.nextLine();
+        for(SV sv:a){
+            if(sv.getLop().equals(k)){
+                System.out.println(sv);
+            }
+        }
+    }
+}
