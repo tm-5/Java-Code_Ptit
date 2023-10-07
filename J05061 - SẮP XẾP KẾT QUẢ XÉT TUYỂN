@@ -1,0 +1,75 @@
+package javaapplication7;
+import java.util.*;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class LocPH implements Comparable<LocPH>{
+    private String ten,ns,ma,rank;
+    private double d1,d2,thuong;
+    private int tong,tuoi;
+    private static int id=1;
+    public LocPH(String a,String b,String c,String d){
+        this.ma="PH"+String.format("%02d",id++);
+        this.ten=a;
+        this.ns=b;
+        this.d1=Double.parseDouble(c);
+        this.d2=Double.parseDouble(d);
+        this.thuong=tinhThuong(d1,d2);
+        this.tong=tinhTong(d1,d2);
+        this.rank=xepHang(tong);
+        this.tuoi=tinhTuoi(ns);
+    
+    }
+    private double tinhThuong(double a, double b){
+        if(a>=8 && b>=8) return 1;
+        if(a>=7.5 && b>=7.5) return 0.5;
+        return 0;
+    }
+    private int tinhTong(double a,double b){
+        double t=(a+b)/2+thuong;
+        if(t>10) t=10;
+        return (int)Math.round(t);
+    }
+    private String xepHang(int t){
+        if (t>=9) return "Xuat sac";
+        else if (t>=8) return "Gioi";
+        else if (t>=7) return "Kha";
+        else if (t>=5) return "Trung binh";
+        return "Truot";
+    }
+    private int tinhTuoi(String n){
+        int y=Integer.parseInt(n.substring(6,10));
+        int nam=2021-y;
+        return nam;
+    }
+    
+    @Override
+    public String toString(){
+        return ma+" "+ten+" "+tuoi+" "+tong+" "+rank;
+    }
+    public int compareTo(LocPH p){
+        if(this.tong>p.tong) return -1;
+        if(this.tong>p.tong){
+            if(this.ma.compareTo(p.ma)<0) return -1;
+            return 1;
+        }
+        return 1;
+    }
+}
+
+public class JavaApplication7 {        
+    public static void main(String[] args) throws IOException {
+        Scanner s=new Scanner(System.in);
+        int t=Integer.parseInt(s.nextLine());
+        ArrayList<LocPH> a=new ArrayList<>();
+        while(t-->0){
+            LocPH i=new LocPH(s.nextLine(),s.nextLine(),s.nextLine(),s.nextLine());
+            a.add(i);
+        }
+        Collections.sort(a);
+        for(LocPH i:a){
+            System.out.println(i);
+        }
+    }        
+}
