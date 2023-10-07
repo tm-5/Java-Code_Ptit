@@ -1,0 +1,26 @@
+package javaapplication7;
+import java.util.*;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+public class JavaApplication7 {
+    public static void main(String[] args) throws FileNotFoundException, ParseException {
+        Scanner s=new Scanner(System.in);
+        int t=s.nextInt();
+        while(t-->0){
+            int n=s.nextInt();
+            Queue<Integer>q=new LinkedList<>();
+            q.add(9);
+            while(q.size()!=0){
+                int x=q.remove();
+                if(x%n==0){
+                    System.out.println(x);
+                    break;
+                }
+                    q.add(x*10);
+                    q.add(x*10+9);
+            }       
+        }      
+    }
+}
