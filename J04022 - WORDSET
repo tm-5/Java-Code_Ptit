@@ -1,0 +1,73 @@
+package javaapplication4;
+import java.util.*;
+import java.io.*;
+
+class WordSet{
+    private String a[];
+    private String n;
+    public WordSet (String k){
+        String n=k.toLowerCase();
+        this.n=n;
+        this.a=n.split("\\s+");
+    }
+    public WordSet(WordSet p){
+        String k=p.n.toLowerCase();
+        this.n=k;
+        this.a=k.split("\\s+");
+        
+    }
+    public WordSet union(WordSet p){
+        WordSet w=new WordSet(p);
+        TreeSet<String> ts=new TreeSet<>();
+        for(String i:this.a){
+            ts.add(i);
+        }
+        for(String i:p.a){
+            ts.add(i);
+        }
+        w.n="";
+        for(String i: ts){
+            w.n+=i+" ";
+        }
+        return w;         
+    }
+    
+    public WordSet intersection(WordSet p){
+        WordSet w=new WordSet(p);
+        ArrayList<String> l=new ArrayList<>();
+        ArrayList<String> k=new ArrayList<>();
+
+        for(String i:w.a){
+            l.add(i);
+        }
+        for(String i:this.a){
+            k.add(i);
+        }
+        TreeSet<String> ts=new TreeSet<>();
+        
+        for(String i:k){
+            if(l.contains(i)==true){
+                ts.add(i);
+            }
+        }
+        w.n="";
+        for(String i: ts){
+            w.n+=i+" ";
+        }
+        return w;
+    }    
+    @Override
+    public String toString(){
+        return n;
+    }
+}
+
+public class JavaApplication4 {    
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        WordSet s1 = new WordSet(in.nextLine());
+        WordSet s2 = new WordSet(in.nextLine());
+        System.out.println(s1.union(s2));
+        System.out.println(s1.intersection(s2));
+    }
+}
