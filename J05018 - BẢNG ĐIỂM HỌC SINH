@@ -1,0 +1,69 @@
+package javaapplication3;
+import java.util.*;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class BangDiem implements Comparable<BangDiem>{
+    private String ma,ten;
+    private double[] diem;
+    private double tb;
+    private static int id=1;
+    public BangDiem(String ten,String d){
+        this.ma="HS"+String.format("%02d",id++);
+        this.ten=ten;
+        String[] a=d.split("\\s+");
+        this.diem=new double[10];
+        for(int i=0;i<10;i++){
+            diem[i]=Double.parseDouble(a[i]);
+        }
+        this.tb=tinhTB();
+    }
+
+    private double tinhTB(){
+        double t=0;
+        for(int i=0;i<10;i++){
+            t+=diem[i];
+        }
+        t+=diem[0];
+        t+=diem[1];
+        t=Math.round(t/12*10);
+        return t/10;
+    }
+    private String loai(){
+        if(tb>=9) return "XUAT SAC";
+        else if(tb>=8) return "GIOI";
+        else if(tb>=7) return "KHA";
+        else if(tb>=5) return "TB";
+        return "YEU";
+    }
+    @Override 
+    public String toString(){
+        return ma+" "+ten+" "+String.format("%.1f", tb)+" "+loai();
+    }
+    @Override
+    public int compareTo(BangDiem p) {
+        if(this.tb>p.tb) return -1;
+        if(this.tb==p.tb){
+            if(this.ma.compareTo(p.ma)<0) return -1;
+            return 1;
+        }
+        return 1;
+    }
+}
+
+public class JavaApplication3 {
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner s=new Scanner(System.in);
+        int t=Integer.parseInt(s.nextLine());
+        ArrayList<BangDiem>a=new ArrayList<>() ;
+        while(t-->0){ 
+            BangDiem sv=new BangDiem(s.nextLine(),s.nextLine());
+            a.add(sv);
+        }
+        Collections.sort(a);
+        for(BangDiem sv:a){
+                System.out.println(sv);
+        }
+    }
+}
