@@ -1,0 +1,43 @@
+package javaapplication4;
+import java.util.*;
+import java.io.*;
+
+
+class IntSet{
+    private int a[];
+    private TreeSet<Integer> set;
+    public IntSet(){
+        
+    }
+    public IntSet(int a[]){
+        this.set=new TreeSet<>();
+        this.a=a;
+        for(int i:a) this.set.add(i);
+    }
+    public IntSet union(IntSet p){
+        IntSet m=new IntSet();
+        m.set=new TreeSet<>();
+        for(int i:a) m.set.add(i);
+        m.set.addAll(p.set);
+        return m;
+    }
+    @Override
+    public String toString(){
+        String k="";
+        for (int i:this.set) k+=i+" ";
+        return k.substring(0,k.length());
+    }
+}
+
+public class JavaApplication4 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt(), m = sc.nextInt(), a[] = new int[n], b[] = new int[m];
+        for(int i = 0; i<n; i++) a[i] = sc.nextInt();
+        for(int i = 0; i<m; i++) b[i] = sc.nextInt();
+        IntSet s1 = new IntSet(a);
+        IntSet s2 = new IntSet(b);
+        IntSet s3 = s1.union(s2);
+        System.out.println(s3);
+    }
+}
