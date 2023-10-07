@@ -1,0 +1,96 @@
+package javaapplication1;
+import java.util.*;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class GV implements Comparable<GV>{
+    private String ma,n,ten,mon;
+    private static int id=1;
+    public GV(String n,String m){
+        this.n=chuanHoa(n);
+        String[] a=this.n.split("\\s+");
+        this.ten=a[a.length-1];
+        this.ma="GV"+String.format("%02d",id++);
+        this.mon=vietTat(m);
+    }
+    public String getMon(){
+        return this.mon;
+    }
+    
+    private String chuanHoa(String n){
+        String k=n;
+        k=k.trim();
+        k=k.toLowerCase();
+        String[]a=k.split("\\s+");
+        String m="";
+        for(int i=0;i<a.length;i++){
+            
+            String l=""; l+=a[i].charAt(0);
+            l=l.toUpperCase();
+            m+=l;
+            m+=a[i].substring(1,a[i].length());
+            m+=" ";
+        }
+        return m.substring(0,m.length()-1);
+    }
+    private String vietTat(String m){
+        m=m.trim();
+        String[] a=m.split("\\s+");
+        String k="";
+        for(int i=0;i<a.length;i++){
+            k+=a[i].charAt(0);
+        }
+        k=k.toUpperCase();
+        return k;
+    }    
+    @Override 
+    public String toString(){
+        return ma+" "+n+" "+mon;
+    }
+    
+    @Override
+    public int compareTo(GV p) {
+        if(this.ten.compareTo(p.ten)<0) return -1;
+        if(this.ten.compareTo(p.ten)==0){
+            if(this.ma.compareTo(p.ma)<0) return -1;
+            else return 1;
+        }
+        else return 1;
+    }
+    
+}
+
+public class JavaApplication1 {
+    public static String vietTat(String m){
+        m=m.trim();
+        String[] a=m.split("\\s+");
+        String k="";
+        for(int i=0;i<a.length;i++){
+            k+=a[i].charAt(0);
+        }
+        k=k.toUpperCase();
+        return k;
+    }
+    
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner s=new Scanner(System.in);
+        ArrayList<GV>a=new ArrayList<>() ;
+        int t=Integer.parseInt(s.nextLine());
+        while(t-->0){ 
+            GV sv=new GV(s.nextLine(),s.nextLine());
+            a.add(sv);
+        }
+    //    Collections.sort(a);      
+        int q=Integer.parseInt(s.nextLine());
+        while(q-->0){
+            String kt=vietTat(s.nextLine());
+            System.out.println("DANH SACH GIANG VIEN BO MON "+(kt)+":");
+            for(GV sv:a){
+                if(sv.getMon().compareTo(kt)==0){
+                    System.out.println(sv);
+                }
+            }
+        }
+    }
+}
