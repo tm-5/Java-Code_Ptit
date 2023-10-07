@@ -1,0 +1,63 @@
+package javaapplication2;
+import java.util.*;
+import java.io.*;
+import java.math.BigInteger;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class Time implements Comparable<Time>{
+    private String ma,ten;
+    private int hv,mv,hr,mr;
+    private int gio,phut;
+    public Time(String ma,String ten,String vao,String ra){
+        this.ma=ma;
+        this.ten=ten;
+        String[] a=vao.split(":");
+        String[] b=ra.split(":");
+        this.hv=Integer.parseInt(a[0]);
+        this.mv=Integer.parseInt(a[1]);
+        this.hr=Integer.parseInt(b[0]);
+        this.mr=Integer.parseInt(b[1]);
+        if(this.mr>mv){
+            phut=mr-mv;
+            gio=hr-hv;
+        }
+        else if(mr<mv ){
+            phut=60-mv+mr;
+            gio=hr-hv-1;
+        }
+        else{
+            phut=0;
+            gio=hr-hv;
+        }
+    }
+    @Override
+    public String toString(){
+        return ma+" "+ten+" "+gio+" gio "+phut+" phut";
+    }
+    @Override
+    public int compareTo(Time p){
+        if(this.gio>p.gio) return -1;
+        if(this.gio==p.gio){
+            if(this.phut>p.phut) return -1;
+            return 1;
+        }
+        return 1;
+    }
+}
+
+
+public class JavaApplication2 {
+    public static void main(String[] args) throws IOException {
+        ArrayList<Time> ds = new ArrayList<>();
+        Scanner in=new Scanner(System.in);
+        int n = Integer.parseInt(in.nextLine());
+        while(n-->0){
+            ds.add(new Time(in.nextLine(),in.nextLine(),in.nextLine(),in.nextLine()));
+        }
+        Collections.sort(ds);
+        for(Time tmp : ds){
+            System.out.println(tmp);
+        }
+    }
+}
