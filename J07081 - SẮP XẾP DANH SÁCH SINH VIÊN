@@ -1,0 +1,57 @@
+package javaapplication3;
+import java.util.*;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class SV implements Comparable<SV>{
+    private String ma,ho,n,ten,sdt,mail,t;
+    public SV(String ma,String n,String s,String m){
+        this.ma=ma;
+        this.n=n;
+        this.sdt=s;
+        this.mail=m;
+        
+        String[] a=this.n.split("\\s+");
+        this.ten=a[a.length-1];
+        String k="";
+        for(int i=0;i<a.length-1;i++){
+            k+=a[i];
+        }
+        this.ho=k;
+    }
+    @Override 
+    public String toString(){
+        return ma+" "+n+" "+sdt+" "+mail;
+    }    
+    @Override
+    public int compareTo(SV p) {
+        if(this.ten.compareTo(p.ten)<0) return -1;
+        if(this.ten.compareTo(p.ten)==0){
+            if(this.ho.compareTo(p.ho)<0) return -1;
+            if(this.ho.compareTo(p.ho)==0){
+                if(this.ma.compareTo(p.ma)<0) return -1;
+                return 1;
+            }
+            else return 1;
+        }
+        else return 1;
+    }    
+}
+
+public class JavaApplication3 {
+    public static void main(String[] args) throws FileNotFoundException {
+        File f=new File("SINHVIEN.in");
+        Scanner s=new Scanner(f);
+        int n=Integer.parseInt(s.nextLine());
+        ArrayList<SV>a=new ArrayList<>() ;
+        for(int i=0;i<n;i++){ 
+            SV sv=new SV(s.nextLine(),s.nextLine(),s.nextLine(),s.nextLine());
+            a.add(sv);
+        }
+        Collections.sort(a);
+        for(SV sv:a){
+            System.out.println(sv);
+        }
+    }
+}
