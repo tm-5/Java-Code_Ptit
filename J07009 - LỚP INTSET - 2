@@ -1,0 +1,46 @@
+package javaapplication7;
+import java.util.*;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class IntSet{
+    private TreeSet<Integer> s;
+    public IntSet(){
+        
+    }
+    public IntSet(int a[]){
+        TreeSet<Integer> st=new TreeSet<>();
+        for(int i=0;i<a.length;i++){
+            st.add(a[i]);
+        }
+        this.s=st;
+    }
+    public IntSet intersection(IntSet p){
+        this.s.retainAll(p.s);
+        IntSet k=new IntSet();
+        k.s=s;
+        return k;
+    }
+    @Override
+    public String toString(){
+        String k="";
+        for(int i:s){
+            k+=i+" ";
+        }
+        return k.substring(0,k.length()-1);
+    }
+}
+
+public class JavaApplication7 {
+    public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(new File("DATA.in"));
+        int n = sc.nextInt(), m = sc.nextInt(), a[] = new int[n], b[] = new int[m];
+        for(int i = 0; i<n; i++) a[i] = sc.nextInt();
+        for(int i = 0; i<m; i++) b[i] = sc.nextInt();
+        IntSet s1 = new IntSet(a);
+        IntSet s2 = new IntSet(b);
+        IntSet s3 = s1.intersection(s2);
+        System.out.println(s3);
+    }   
+}
