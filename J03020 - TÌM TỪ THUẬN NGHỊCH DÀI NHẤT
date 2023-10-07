@@ -1,0 +1,42 @@
+package javaapplication1;
+import java.util.*;
+import java.io.*;
+
+public class JavaApplication1 {
+    public static boolean tn(String n){
+        if(n.length()<2) return false;
+        for(int i=0;i<n.length()/2+1;i++){
+            if(n.charAt(i)!=n.charAt(n.length()-i-1)) return false;
+        }
+        return true;
+    }
+    
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        Scanner s=new Scanner(System.in);
+        Map<String,Integer> m=new LinkedHashMap<>();
+        while(s.hasNextLine()){
+            String n=s.nextLine();
+            String[] ds=n.split("\\s+");
+            for(String i:ds){
+                if(tn(i)){
+                    if(!m.containsKey(i)){
+                        m.put(i, 1);
+                    }
+                    else m.put(i, m.get(i)+1);
+                }
+            }
+            
+        }
+        int l=0;
+        for(Map.Entry i:m.entrySet()){
+            if(i.getKey().toString().length()>l){
+                l=i.getKey().toString().length();
+            }
+        }
+        for(Map.Entry i:m.entrySet()){
+            if(i.getKey().toString().length()==l){
+                System.out.println(i.getKey()+" "+i.getValue());
+            }
+        }
+    }
+}
