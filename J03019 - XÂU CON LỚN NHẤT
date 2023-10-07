@@ -1,0 +1,21 @@
+package javaapplication3;
+import java.util.*;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+public class JavaApplication3 {
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner s=new Scanner(System.in);
+        String n=s.next();
+        String k="";
+        char c=n.charAt(n.length()-1);
+        for(int i=n.length()-1;i>=0;i--){
+            if(n.charAt(i)>=c){
+                k=n.charAt(i)+k;
+                c=n.charAt(i);
+            }
+        }
+        System.out.println(k);
+    }
+}
