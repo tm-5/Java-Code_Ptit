@@ -1,0 +1,25 @@
+package javaapplication7;
+import java.util.*;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+public class JavaApplication7 {
+    public static void main(String[] args) throws FileNotFoundException, ParseException {
+        Scanner s=new Scanner(System.in);
+        ArrayList<String> a=new ArrayList<>();
+        String x="";
+        while(s.hasNext()){
+            x+=s.next()+" ";
+        }
+        x=x.replace(". ", "\n");
+        x=x.replace("! ", "\n");
+        x=x.replace("? ", "\n");
+        String[] d=x.split("\n");
+        for(String i:d){
+            i=i.toLowerCase();
+            String k=i.substring(0,1).toUpperCase();
+            System.out.println(k+i.substring(1));
+        }        
+    }
+}
