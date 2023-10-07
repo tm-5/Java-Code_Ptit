@@ -1,0 +1,74 @@
+package javaapplication3;
+import java.util.*;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class HS implements Comparable<HS>{
+    private String ma,ten,r;
+    private double d;
+    private int tt;
+    private static int id=1;
+    public HS(String ten,String d){
+        this.ma="HS"+String.format("%02d",id++);
+        this.ten=ten;
+        this.d=Double.parseDouble(d);
+        if(this.d<5) r="Yeu";
+        else if(this.d<7) r="Trung Binh";
+        else if(this.d<9) r="Kha";
+        else r="Gioi";
+    }
+    public String getMa(){
+        return this.ma;
+    }
+    public int getTT(){
+        return this.tt;
+    }
+    public void setTT(int i){
+        this.tt=i;
+    }
+    public double getD(){
+        return this.d;
+    }
+    @Override 
+    public String toString(){
+        return ma+" "+ten+" "+String.format("%.1f", d)+" "+r+" ";
+    }
+    
+    @Override
+    public int compareTo(HS p) {
+        if(this.d>p.d) return -1;
+        return 1;
+    }  
+}
+
+public class JavaApplication3 {
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner s=new Scanner(System.in);
+        int n=Integer.parseInt(s.nextLine());
+        ArrayList<HS>a=new ArrayList<>() ;
+        for(int i=0;i<n;i++){ 
+            HS sv=new HS(s.nextLine(),s.nextLine());
+            a.add(sv);
+        }
+        ArrayList<HS>b=new ArrayList<>() ;
+        for(HS i:a) b.add(i);
+        Collections.sort(a);
+        a.get(0).setTT(1);
+        for(int i=1;i<a.size();i++){
+            if(a.get(i).getD()==a.get(i-1).getD()){
+                a.get(i).setTT(a.get(i-1).getTT());
+            }
+            else a.get(i).setTT(i+1);
+        }
+        for(HS sv:b){
+            System.out.print(sv);
+            for(HS i:a){
+                if(sv.getMa().equals(i.getMa())){
+                    System.out.println(i.getTT());
+                    break;
+                }
+            }
+        }
+    }
+}
