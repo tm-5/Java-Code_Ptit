@@ -1,0 +1,61 @@
+package javaapplication4;
+import java.util.*;
+import java.io.*;
+
+class XD implements Comparable<XD>{
+    private String ma,hang;
+    private long sl,g,tong,tax,tt;
+    public XD(String a,String b){
+        this.ma=a;
+        this.sl=Long.parseLong(b);
+        this.g=tinhGia();
+        this.hang=hangSx();
+        this.tong=sl*g;
+        this.tax=tinhTax();
+        this.tt=tong+tax;
+    }
+    private String hangSx(){
+        if(ma.substring(ma.length()-2,ma.length()).equals("BP")) return "British Petro";
+        if(ma.substring(ma.length()-2,ma.length()).equals("ES")) return "Esso";
+        if(ma.substring(ma.length()-2,ma.length()).equals("SH")) return "Shell";
+        if(ma.substring(ma.length()-2,ma.length()).equals("CA")) return "Castrol";
+        if(ma.substring(ma.length()-2,ma.length()).equals("TN")) return "Trong Nuoc";
+        return "Mobil";
+    }
+    private long tinhTax(){
+        if(ma.substring(ma.length()-2,ma.length()).equals("TN")==true) return 0;
+        else if(ma.charAt(0)=='X') return tong*3/100;
+        else if(ma.charAt(0)=='D') return tong*35/1000;
+        return tong*2/100;
+    }
+    private long tinhGia(){
+        if(ma.charAt(0)=='X') return 128000;
+        else if(ma.charAt(0)=='D') return 11200;
+        return 9700;
+    }
+    public String toString(){
+        return ma+" "+hang+" "+g+" "+tax+" "+ tt;
+    }
+    @Override
+    public int compareTo(XD p){
+        if(this.tt>p.tt) return -1;
+        return 1;
+    }
+}
+
+public class JavaApplication4 {    
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+        int t=Integer.parseInt(s.nextLine());
+        ArrayList<XD> a=new ArrayList<>();
+        while(t-->0){
+            String[] f=s.nextLine().split("\\s+");
+            XD n=new XD(f[0],f[1]);
+            a.add(n);
+        }
+        Collections.sort(a);
+        for(XD i :a){
+            System.out.println(i);
+        }
+    }
+}
