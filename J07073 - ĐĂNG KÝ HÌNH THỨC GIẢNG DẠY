@@ -1,0 +1,48 @@
+package javaapplication3;
+import java.util.*;
+import java.io.*;
+
+class MonHoc implements Comparable<MonHoc>{
+    private String ma,ten,lt,th;
+    private int so;
+    public MonHoc(String ma,String ten,String so,String lt,String th){
+        this.ma=ma;
+        this.ten=ten;
+        this.so=Integer.parseInt(so);
+        this.lt=lt;
+        this.th=th;
+    }
+    public String getTH(){
+        return this.th;
+    }
+    @Override 
+    public String toString(){
+        return ma+" "+ten+" "+so+" "+lt+" "+th;
+    }    
+    @Override
+    public int compareTo(MonHoc p) {
+        if(this.ma.compareTo(p.ma)<0) return -1;
+        return 1;
+    }  
+}
+
+public class JavaApplication3 {
+    public static void main(String[] args) throws FileNotFoundException {
+        File f=new File("MONHOC.in");
+        Scanner s=new Scanner(f);
+        int t=Integer.parseInt(s.nextLine());
+        ArrayList<MonHoc>a=new ArrayList<>() ;
+        while(t-->0){ 
+            MonHoc sv=new MonHoc(s.nextLine(),s.nextLine(),s.nextLine(),s.nextLine(),s.nextLine());
+            a.add(sv);
+        }
+        Collections.sort(a);
+        for(MonHoc sv:a){
+            String n=sv.getTH();
+            if(n.contains(".ptit.edu.vn")==true && n.substring(n.length()-12,n.length()).compareTo(".ptit.edu.vn")==0)
+                System.out.println(sv);
+            if(n.compareTo("Truc tuyen")==0)
+                System.out.println(sv);
+        }
+    }
+}
