@@ -1,0 +1,40 @@
+package javaapplication2;
+import java.util.*;
+import java.io.*;
+import java.math.BigInteger;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class NhanVien{
+    private String ten,dc,gender,ns,tax,date;
+    public void input(Scanner s){
+        this.ten=s.nextLine();
+        this.gender=s.next();
+        this.ns=s.next();
+        s.nextLine();
+        this.dc=s.nextLine();
+        this.tax=s.next();
+        this.date=s.next();
+    }
+    public void hienThi(){
+        System.out.print(ten+ " "+gender+" "+ns+" "+dc+" "+tax+" "+date);
+        System.out.println("");
+    }
+}
+
+
+public class JavaApplication2 {
+    static int tt=0;
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+        int n=s.nextInt();
+        for(int i=0;i<n;i++){
+            s.nextLine();
+            NhanVien nv=new NhanVien();
+            nv.input(s);
+            System.out.print(String.format("%05d",++tt)+" ");
+            nv.hienThi();
+        }
+        
+    }
+}
