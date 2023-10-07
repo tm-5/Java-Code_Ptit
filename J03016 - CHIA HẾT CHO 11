@@ -1,0 +1,20 @@
+package javaapplication3;
+import java.util.*;
+import java.math.BigInteger;
+
+public class JavaApplication3 {
+    
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        int t = s.nextInt();
+        while(t-- >0){
+            BigInteger a=s.nextBigInteger();
+            BigInteger x=new BigInteger("11");
+            BigInteger k=a.divide(x);
+            if(k.multiply(x).compareTo(a)==0){
+                System.out.println("1");
+            }
+            else System.out.println("0");
+        }
+    }
+}
