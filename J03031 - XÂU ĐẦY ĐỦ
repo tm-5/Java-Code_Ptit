@@ -1,0 +1,21 @@
+package javaapplication4;
+import java.util.*;
+import java.io.*;
+import java.math.BigInteger;
+
+public class JavaApplication4 {
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in) ;
+        int t= s.nextInt();
+        while(t-->0){
+            String n=s.next();
+            int k=s.nextInt();
+            HashSet<Character> set=new HashSet<>();
+            for(int i=0;i<n.length();i++){
+                set.add(n.charAt(i));
+            }
+            if(set.size()+k>=26) System.out.println("YES");
+            else System.out.println("NO");
+        }
+    }    
+}
