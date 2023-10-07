@@ -1,0 +1,61 @@
+package javaapplication1;
+import java.util.*;
+
+class PhanSo{
+    private long x,y;
+    public void input(Scanner s){
+        this.x=s.nextLong();
+        this.y=s.nextLong();
+    }
+    public PhanSo(){
+        
+    }
+    public PhanSo(long x,long y){
+        this.x=x;
+        this.y=y;
+    }
+    public long getX(){
+        return this.x;
+    }
+    public long getY(){
+        return this.y;
+    }
+    
+}
+
+public class JavaApplication1 {
+    public static long gcd(long a,long b){
+        if(b==0) return a;
+        return gcd(b,a%b);
+    }
+    
+    public static PhanSo cong(PhanSo a,PhanSo b){
+        long tu=a.getX()*b.getY()+a.getY()*b.getX();
+        long mau=a.getY()*b.getY();
+        long uc=gcd(tu,mau);
+        PhanSo c=new PhanSo((long)Math.pow(tu/uc,2),(long)Math.pow(mau/uc,2));
+        return c;
+    }
+    
+    public static PhanSo nhan(PhanSo a,PhanSo b,PhanSo c){
+        long tu=a.getX()*b.getX()*c.getX();
+        long mau=a.getY()*b.getY()*c.getY();
+        long uc=gcd(tu,mau);
+        PhanSo d=new PhanSo(tu/uc,mau/uc);
+        return d;
+    }
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while(t-- >0){
+            PhanSo a=new PhanSo();
+            PhanSo b=new PhanSo();
+            a.input(sc);
+            b.input(sc);
+            PhanSo c=cong(a,b);
+            PhanSo d=nhan(a,b,c);
+            System.out.println(c.getX()+"/"+c.getY()+" "+d.getX()+"/"+d.getY());
+        }
+    }
+}
