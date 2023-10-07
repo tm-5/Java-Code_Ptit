@@ -1,0 +1,30 @@
+package javaapplication1;
+import java.util.*;
+import java.io.*;
+import java.math.BigInteger;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+public class JavaApplication1 {    
+    public static void main(String[] args) throws ParseException, IOException {
+        Scanner s=new Scanner(System.in);
+        int n=s.nextInt();
+        Map<Integer,Integer>m=new TreeMap<>();
+        for(int i=0;i<n;i++){
+            int a=s.nextInt();
+            int b=s.nextInt();
+            if(!m.containsKey(a)){
+                m.put(a, b);
+            }
+            else m.put(a, m.get(a)+b);
+        }
+        int dem=0;
+        for(Map.Entry i:m.entrySet()){
+            if(dem<(int)i.getKey()){
+                dem=(int)i.getKey();
+            }
+            dem+=(int)i.getValue();
+        }
+        System.out.println(dem);
+    }
+}
