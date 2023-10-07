@@ -1,0 +1,53 @@
+package javaapplication2;
+import java.util.*;
+
+public class JavaApplication2 {
+    public static Integer[]a=new Integer[20], b=new Integer[20];
+    public static int n;
+    
+    public static boolean snt(int n){
+        if(n<2) return false;
+        for(int i=2;i<(int)Math.sqrt(n)+1;i++){
+            if(n%i==0) return false;
+        }
+        return true;
+    }
+    
+    public static void kt(){
+        int tong=0;
+        for(int i=1;i<=n;i++){
+            tong+=a[i]*b[i];
+        }
+        if(snt(tong)){
+                for(int j=1;j<=n;j++){
+                    if(b[j]!=0){
+                        System.out.print(a[j]+" ");
+                    }
+                }
+                System.out.println("");
+        }
+    }
+    
+    public static void ql(int i){
+        for(int j=0;j<=1;j++){
+            b[i]=j;
+            if(i==n){
+                kt();
+            }
+            else ql(i+1);
+        }
+    }
+    
+    public static void main(String[] args){
+        Scanner s=new Scanner(System.in);
+        int t=s.nextInt();
+        while(t-->0){
+            n=s.nextInt();
+            for(int i=1;i<=n;i++){
+                a[i]=s.nextInt();
+            }
+            Arrays.sort(a,1,n+1,Comparator.reverseOrder());
+            ql(1);
+        }
+    }
+}
