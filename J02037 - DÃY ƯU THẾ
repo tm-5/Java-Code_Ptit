@@ -1,0 +1,26 @@
+package javaapplication3;
+import java.util.*;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+public class JavaApplication3 {
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner s=new Scanner(System.in);
+        int t=Integer.parseInt(s.nextLine());
+        while(t-->0){
+            ArrayList<Integer> a=new ArrayList<>();
+            String[] d=s.nextLine().split("\\s+");
+            int chan=0,le=0;
+            for(String i:d){
+                int x=Integer.parseInt(i);
+                if(x%2==0) chan++;
+                else le++;
+                a.add(x);
+            }
+            if(a.size()%2==0 && chan>le) System.out.println("YES"); 
+            else if(a.size()%2==1 && chan<le) System.out.println("YES"); 
+            else System.out.println("NO");
+        }
+    }
+}
