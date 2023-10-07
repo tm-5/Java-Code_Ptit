@@ -1,0 +1,32 @@
+package javaapplication2;
+import java.util.*;
+
+public class JavaApplication2 {
+    public static void main(String[] args){
+        Scanner s=new Scanner(System.in);
+        int t=s.nextInt();
+        while(t-->0){
+            Set<Long> st=new HashSet<>();
+            int n=s.nextInt();
+            long[] a=new long[n];
+
+            for(int i=0;i<n;i++){
+                long x=s.nextInt();
+                a[i]=x;
+                st.add(x*x);
+            }
+            String k="NO";
+            for(int i=0;i<n;i++){
+                long x=a[i]*a[i];
+                for(int j=i+1;j<n;j++){
+                long y=a[j]*a[j];
+                    if(st.contains(x+y)){
+                        k="YES";
+                        break;
+                    }
+                }
+            }
+            System.out.println(k);
+        }
+    }
+}
