@@ -1,0 +1,31 @@
+package javaapplication7;
+import java.util.*;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+public class JavaApplication7 {
+    public static void main(String[] args) throws  ParseException, NumberFormatException {
+        Scanner s=new Scanner(System.in);
+        int t=s.nextInt();
+        while(t-->0){
+            int n=s.nextInt();
+            Queue<String>q=new LinkedList<>();
+            ArrayList<String>a=new ArrayList<>();
+            q.add("6");
+            q.add("8");
+            while(!q.isEmpty()){
+                String x=q.remove();
+                if(x.length()>n) break;
+                a.add((x));
+                q.add(x+"6");
+                q.add(x+"8");
+            }
+            System.out.println(a.size());
+            for(int i=a.size()-1;i>=0;i--){
+                System.out.print(a.get(i)+" ");
+            }
+            System.out.println("");
+        }     
+    }
+}
