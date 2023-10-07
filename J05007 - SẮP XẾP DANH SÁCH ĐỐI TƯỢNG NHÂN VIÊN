@@ -1,0 +1,65 @@
+package javaapplication1;
+import java.util.*;
+
+class NhanVien implements Comparable<NhanVien>{
+    private static int id=1;
+    private String ma,ten,gen,ns,dc,tax,day;
+    public void input(Scanner s){
+        this.ma=String.format("%05d",id++);
+        this.ten=s.nextLine();
+        this.gen=s.next();
+        this.ns=s.next();
+        s.nextLine();
+        this.dc=s.nextLine();
+        this.tax=s.next();
+        this.day=s.next();
+    }
+    public String getNs(){
+        return this.ns;
+    }
+    public String cmp(){
+        
+        String k="";
+        k+=ns.substring(6, 10);
+        k+=ns.substring(3,5);
+        k+=ns.substring(0,2);
+        return k;
+    }
+    public String test(){
+        String k="";
+        for(int i=ns.length()-1;i>=0;i--) k+=ns.charAt(i);
+        return k;
+    }
+    @Override
+    public String toString(){
+        return ma+" "+ten+" "+gen+" "+ns+" "+dc+" "+tax+" "+day;
+    }
+    
+    @Override
+    public int compareTo(NhanVien s){
+        String k=this.cmp();
+        String n=s.cmp();
+        if(k.compareTo(n)>0) return 1;
+        else return -1;
+    }
+}
+
+public class JavaApplication1 {
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        ArrayList<NhanVien> a=new ArrayList<>();
+        while(t-- >0){
+            sc.nextLine();
+            NhanVien nv=new NhanVien();
+            nv.input(sc);
+            a.add(nv);
+            
+        }
+        Collections.sort(a);
+            for(NhanVien i:a){
+                System.out.println(i);
+            }
+    }
+}
