@@ -1,0 +1,54 @@
+package javaapplication2;
+import java.util.*;
+import java.io.*;
+import java.math.BigInteger;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class ThiSinh{
+    private String ten,ma;
+    private double t,l,h;
+    public void input(Scanner s){
+        this.ma=s.next();
+        s.nextLine();
+        this.ten=s.nextLine();
+        this.t=s.nextDouble();
+        this.l=s.nextDouble();
+        this.h=s.nextDouble();
+        
+    }
+
+    public boolean chuan(double k){
+        if(k%1==0) 
+            return true;
+        return false;
+    }
+    
+    public void hienThi(){
+        double diem=0;
+        if(ma.charAt(2)=='1') diem=0.5;
+        else if(ma.charAt(2)=='2') diem=1.0;
+        else diem=2.5;
+        double tong=0;
+        tong+=t*2+l+h;
+        System.out.print(ma+" "+ten+" ");
+        if(chuan(diem)) System.out.printf("%d",(int)diem);
+        else System.out.printf("%.1f",diem);
+        System.out.print(" ");
+        if(chuan(tong)) System.out.printf("%d",(int)tong);
+        else System.out.printf("%.1f",tong);
+
+        if(tong+diem>=24) System.out.print(" TRUNG TUYEN");
+        else System.out.print(" TRUOT");
+    }
+}
+
+public class JavaApplication2 {
+    static int tt=0;
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+            ThiSinh nv=new ThiSinh();
+            nv.input(s);
+            nv.hienThi();
+    }
+}
