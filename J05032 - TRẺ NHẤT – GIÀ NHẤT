@@ -1,0 +1,65 @@
+package javaapplication2;
+import java.util.*;
+import java.io.*;
+import java.math.BigInteger;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class Nguoi implements Comparable<Nguoi>{
+    private String ten,ng;
+    public Nguoi(String t){
+        String[] a=t.split("\\s+");
+        this.ten=a[0];
+        this.ng=ss(a[1]);
+    }
+    
+    private String chuanHoa(String n){
+        n=n.trim();
+        n=n.toLowerCase();
+        String a[]=n.split("\\s+");
+        String k="";
+        for(int i=0;i<a.length;i++){
+            String x=""; x+=a[i].charAt(0);
+            x=x.toUpperCase();
+            x+=a[i].substring(1,a[i].length());
+            k+=x;
+            k+=" ";
+        }
+        return k;
+    }
+    
+    private String ss(String n){
+        String k="";
+        k+=n.substring(6,10);
+        k+=n.substring(3,5);
+        k+=n.substring(0,2);
+        return k;
+    }
+    
+    @Override
+    public String toString(){
+        return ten;
+    }
+    
+    
+    @Override
+    public int compareTo(Nguoi s){
+        if(this.ng.compareTo(s.ng)>0) return -1;
+        return 1;
+    }
+}
+
+public class JavaApplication2 {
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner s=new Scanner(System.in);
+        int n=Integer.parseInt(s.nextLine());
+        ArrayList<Nguoi> a=new ArrayList<>();
+        while(n-->0){
+            Nguoi nv=new Nguoi(s.nextLine());
+            a.add(nv);
+        }
+        Collections.sort(a);
+        System.out.println(a.get(0));
+        System.out.println(a.get(a.size()-1));
+    }
+}
