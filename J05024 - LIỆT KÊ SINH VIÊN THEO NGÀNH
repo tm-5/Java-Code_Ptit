@@ -1,0 +1,105 @@
+package javaapplication2;
+import java.util.*;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class MonHoc implements Comparable<MonHoc>{
+    private String ma,ten,lop,m;
+    public MonHoc(String ma,String t,String l,String m){
+        this.ma=ma;
+        this.ten=t;
+        this.lop=l;
+        this.m=m;
+        
+    }
+    private String chuanHoa(String n){
+        String k=n;
+        k=k.trim();
+        k=k.toLowerCase();
+        String[]a=k.split("\\s+");
+        String m="";
+        for(int i=0;i<a.length;i++){
+            
+            String l=""; l+=a[i].charAt(0);
+            l=l.toUpperCase();
+            m+=l;
+            m+=a[i].substring(1,a[i].length());
+            m+=" ";
+        }
+        return m.substring(0,m.length()-1);
+    }
+    private String vietTat(String m){
+        m=m.trim();
+        String[] a=m.split("\\s+");
+        String k="";
+        for(int i=0;i<a.length;i++){
+            k+=a[i].charAt(0);
+        }
+        k=k.toUpperCase();
+        return k;
+    }    
+    public String nganh(){
+        if(ma.substring(5,7).equals("KT"))
+            return "KE TOAN";
+        if(ma.substring(5,7).equals("CN") && lop.charAt(0)!='E')
+            return "CONG NGHE THONG TIN";
+        if(ma.substring(5,7).equals("AT") && lop.charAt(0)!='E')
+            return "AN TOAN THONG TIN";
+        if(ma.substring(5,7).equals("VT"))
+            return "VIEN THONG";
+        if(ma.substring(5,7).equals("DT"))
+            return "DIEN TU";
+        return "";
+    }
+    
+    @Override 
+    public String toString(){
+        return ma+" "+ten+" "+lop+" "+m;
+    }
+    
+    @Override
+    public int compareTo(MonHoc p) {
+        if(this.ten.compareTo(p.ten)<0) return -1;
+        if(this.ten.compareTo(p.ten)==0){
+            if(this.ma.compareTo(p.ma)<0) return -1;
+            else return 1;
+        }
+        else return 1;
+    }
+    
+}
+
+public class JavaApplication2{
+    public static String vietTat(String m){
+        m=m.trim();
+        String[] a=m.split("\\s+");
+        String k="";
+        for(int i=0;i<2;i++){
+            k+=a[i].charAt(0);
+        }
+        k=k.toUpperCase();
+        return k;
+    }
+    
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner s=new Scanner(System.in);
+        ArrayList<MonHoc>a=new ArrayList<>() ;
+        int t=Integer.parseInt(s.nextLine());
+        while(t-->0){ 
+            MonHoc sv=new MonHoc(s.nextLine(),s.nextLine(),s.nextLine(),s.nextLine());
+            a.add(sv);
+        }
+    //    Collections.sort(a);        
+        int q=Integer.parseInt(s.nextLine());
+        while(q-->0){
+            String kt=s.nextLine().toUpperCase();
+            System.out.println("DANH SACH SINH VIEN NGANH "+kt+":");
+            for(MonHoc sv:a){
+                if(sv.nganh().equals(kt)){
+                        System.out.println(sv);
+                }
+            }
+        }
+    }
+}
