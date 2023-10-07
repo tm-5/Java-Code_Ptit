@@ -1,0 +1,68 @@
+package javaapplication1;
+import static java.lang.Math.PI;
+import java.util.*;
+
+class Point{
+    private double x,y;
+    public Point(){
+        
+    }
+    public void input(double x,double y){
+        Scanner s=new Scanner(System.in);
+        this.x=x;
+        this.y=y;
+    }
+    public Point(double x, double y){
+        this.x=x;
+        this.y=y;
+    }
+    public double getX(){
+        return this.x;
+    }
+    public double getY(){
+        return this.y;
+    }
+    
+    public Point(Point p){
+        this.x=p.x;
+        this.y=p.y;
+    }
+    public double distance(Point p2){
+        return Math.sqrt((Math.pow(getX()-p2.getX(),2 )+Math.pow(getY()-p2.getY(), 2)));
+
+    }
+    public double distance(Point p1,Point p2){
+        return Math.sqrt((Math.pow(p1.getX()-p2.getX(),2 )+Math.pow(p1.getY()-p2.getY(), 2)));
+    }
+    @Override
+    public String toString(){
+        return "";
+    }
+}
+
+public class JavaApplication1 { 
+    public static void main(String[] args) {
+         Scanner s=new Scanner(System.in);
+         int t= s.nextInt();
+         Point p1=new Point();
+            Point p2=new Point();
+            Point p3=new Point();
+            while(t-->0){
+                p1.input(s.nextDouble(),s.nextDouble());
+                p2.input(s.nextDouble(),s.nextDouble());
+                p3.input(s.nextDouble(),s.nextDouble());
+                Point p=new Point();
+                double a= p.distance(p1,p2);
+                double b= p.distance(p1,p3);
+                double c= p.distance(p2,p3);
+                
+                if(a+b>c && a+c>b && b+c>a){
+                    double dt=Math.sqrt((a+b+c)*(a+b-c)*(-a+b+c)*(a-b+c))/4;
+                    double bk=a*b*c/4/dt;
+                    System.out.printf("%.3f",PI*bk*bk);
+                }
+                else System.out.print("INVALID");
+                System.out.println("");
+            }
+    }   
+}
