@@ -1,0 +1,43 @@
+package javaapplication7;
+import java.util.*;
+import java.io.*;
+import java.text.ParseException;
+
+class TS{
+    private String ma,ten,tt;
+    private double d1,d2,d3,ut,tong;
+    public TS (String a,String b,String c,String d,String e){
+        this.ma=a;
+        this.ten=b;
+        this.d1=Double.parseDouble(c);
+        this.d2=Double.parseDouble(d);
+        this.d3=Double.parseDouble(e);
+        if(ma.charAt(2)=='1') ut=0.5;
+        if(ma.charAt(2)=='2') ut=1;
+        if(ma.charAt(2)=='3') ut=2.5;
+        this.tong=d1*2+d2+d3+ut;
+        if(this.tong>=24) tt="TRUNG TUYEN";
+        else tt="TRUOT";
+    }
+    private String chuan(double n){
+        if(n%1==0){
+            return String.format("%d",(int)n);
+        }
+        return String.format("%.1f",n);
+    }
+    @Override
+    public String toString(){
+        return ma+" "+ten+" "+chuan(ut)+" "+chuan(tong-ut)+" "+tt;
+    }
+}
+
+public class JavaApplication7 {
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+        int t= Integer.parseInt(s.nextLine());
+        while(t-->0){
+            TS a=new TS(s.nextLine(),s.nextLine(),s.nextLine(),s.nextLine(),s.nextLine());
+            System.out.println(a);
+        }
+    }       
+}
