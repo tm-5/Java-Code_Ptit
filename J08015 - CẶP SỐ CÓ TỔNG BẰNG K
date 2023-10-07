@@ -1,0 +1,37 @@
+package javaapplication7;
+import java.util.*;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+public class JavaApplication7 {
+    public static void main(String[] args) throws  ParseException, NumberFormatException {
+        Scanner s=new Scanner(System.in);
+        int t=s.nextInt();
+        while(t-->0){
+            Map<Long,Long> m=new TreeMap<>();
+            int n=s.nextInt();
+            long k=s.nextInt();
+            long dem=0;
+            int [] a=new int[n];
+            for(int i=0;i<n;i++){
+                a[i]=s.nextInt();
+            }
+            for(int i=0;i<n;i++){
+                long x=a[i];
+                if(!m.containsKey(x)){
+                    m.put(x, (long)1);
+                }
+                else m.put(x, m.get(x)+1);
+            }
+            for(int i=0;i<n;i++){
+                if(m.containsKey(k-a[i])){
+                    dem+=m.get(k-a[i]);
+                    if(k-a[i]==a[i])
+                        dem--;
+                }
+            }
+            System.out.println(dem/2);
+        }       
+    }
+}
