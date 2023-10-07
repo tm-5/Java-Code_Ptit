@@ -1,0 +1,63 @@
+package javaapplication3;
+import java.util.*;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class DN implements Comparable<DN>{
+    private String ma,ten;
+    private int sl;
+    public DN(String ma,String ten,String sl){
+        this.ma=ma;
+        this.ten=ten;
+        this.sl=Integer.parseInt(sl);
+    }
+    public int getSl(){
+        return this.sl;
+    }
+    
+    @Override 
+    public String toString(){
+        return ma+" "+ten+" "+sl;
+    }
+    
+    @Override
+    public int compareTo(DN o1) {
+        if(this.sl>o1.sl) return -1;
+        if(this.sl==o1.sl){
+            if(this.ma.compareTo(o1.ma)<0) return -1;
+            return 1;
+        }
+        else return 1;
+    }
+    
+}
+
+public class JavaApplication3 {
+    public static void main(String[] args) throws FileNotFoundException {
+    //    File f=new File("DN.in");
+      //  Scanner s=new Scanner(f);
+        Scanner s=new Scanner(System.in);
+        int n=Integer.parseInt(s.nextLine());
+       
+        ArrayList<DN>a=new ArrayList<>() ;
+        for(int i=0;i<n;i++){ 
+            DN sv=new DN(s.nextLine(),s.nextLine(),s.nextLine());
+            a.add(sv);
+        }
+        Collections.sort(a);
+        int q=Integer.parseInt(s.nextLine());
+        while(q-->0){
+            String kt=s.nextLine();
+            String[] f=kt.split("\\s+");
+            int c=Integer.parseInt(f[0]);
+            int b=Integer.parseInt(f[1]);
+            System.out.println("DANH SACH DOANH NGHIEP NHAN TU "+c+" DEN "+b+" SINH VIEN:");
+            for(DN sv:a){
+                if(sv.getSl()>=c && sv.getSl()<=b)
+                    System.out.println(sv);
+            }
+        }
+        
+    }
+}
