@@ -1,0 +1,84 @@
+package javaapplication1;
+import java.util.*;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class SV implements Comparable<SV>{
+    private String ma,ten,lop,m,dn,stt;
+    private static int id=1;
+    public SV(String ma,String t,String l,String m,String d){
+        this.stt=String.format("%d",id++);
+        this.ma=ma;
+        this.ten=t;
+        this.lop=l;
+        this.m=m;
+        this.dn=d;
+    }
+    public String getD(){
+        return this.dn;
+    }
+    /*
+    private String chuanHoa(String n){
+        String k=n;
+        k=k.trim();
+        k=k.toLowerCase();
+        String[]a=k.split("\\s+");
+        String m="";
+        for(int i=0;i<a.length;i++){
+            
+            String l=""; l+=a[i].charAt(0);
+            l=l.toUpperCase();
+            m+=l;
+            m+=a[i].substring(1,a[i].length());
+            m+=" ";
+        }
+        return m.substring(0,m.length()-1);
+    }
+    private String vietTat(String m){
+        m=m.trim();
+        String[] a=m.split("\\s+");
+        String k="";
+        for(int i=0;i<a.length;i++){
+            k+=a[i].charAt(0);
+        }
+        k=k.toUpperCase();
+        return k;
+    }    
+    */
+    @Override 
+    public String toString(){
+        return stt+" "+ma+" "+ten+" "+lop+" "+m+" "+dn;
+    }
+    
+    @Override
+    public int compareTo(SV p) {
+        if(this.ten.compareTo(p.ten)<0) return -1;
+        else return 1;
+    }
+    
+}
+
+public class JavaApplication1 {
+    
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner s=new Scanner(System.in);
+        ArrayList<SV>a=new ArrayList<>() ;
+        int t=Integer.parseInt(s.nextLine());
+        while(t-->0){ 
+            SV sv=new SV(s.nextLine(),s.nextLine(),s.nextLine(),s.nextLine(),s.nextLine());
+            a.add(sv);
+        }
+        Collections.sort(a);
+        
+        int q=Integer.parseInt(s.nextLine());
+        while(q-->0){
+            String kt=s.nextLine();
+            for(SV i:a){
+                if(i.getD().compareTo(kt)==0){
+                    System.out.println(i);
+                }
+            }
+        }
+    }
+}
