@@ -1,0 +1,68 @@
+package javaapplication6;
+import java.util.*;
+import java.io.*;
+
+class NV implements Comparable<NV>{
+    private String ma,ten,chuc;
+    private int luong,ngay,phuCap,tamUng,tong;
+    private static int id=1;
+    public NV(String a,String b,String c,String d){
+        this.ma="NV"+String.format("%02d", id++);
+        this.ten=a;
+        this.chuc=b;
+        this.luong=Integer.parseInt(c);
+                this.ngay=Integer.parseInt(d);
+                this.phuCap=tinhPC(b);
+                this.tamUng=tinhTU();
+                        this.tong=luong*ngay+phuCap;
+
+    }
+    private int tinhPC(String n){
+        if(n.equals("GD")) return 500;
+        if(n.equals("PGD")) return 400;
+        if(n.equals("TP")) return 300;
+        if(n.equals("KT")) return 250;
+        return 100;
+    }
+    private int tinhTU(){
+        if((phuCap+luong*ngay)*2/3<25000 ){
+            int x=(int)Math.round((double)(phuCap+luong*ngay)*2/3/1000);
+            return x*1000;
+        }
+        return 25000;
+    }
+    public String getC(){
+        return this.chuc;
+    }
+    @Override
+    public String toString(){
+        return ma+" "+ten+" "+phuCap+" "+String.format("%d",luong*ngay)+" "+tamUng+" "+String.format("%d",luong*ngay-tamUng+phuCap);
+    }
+    @Override
+    public int compareTo(NV p){
+        if(this.tong>p.tong) return -1;
+        if(this.tong==p.tong){
+            if(this.ma.compareTo(p.ma)<0) return -1;
+            return 1;
+        }
+        return 1;
+    }
+}
+
+public class JavaApplication6 {
+
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner s=new Scanner(System.in);
+        int t=Integer.parseInt(s.nextLine());
+        ArrayList<NV> a=new ArrayList<>();
+        while(t-->0){
+            NV n=new NV(s.nextLine(),s.nextLine(),s.nextLine(),s.nextLine());
+            a.add(n);
+        }
+        Collections.sort(a);
+        for(NV i:a){
+                System.out.println(i);
+        }
+    }
+    
+}
