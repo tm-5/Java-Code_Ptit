@@ -1,0 +1,64 @@
+package javaapplication3;
+import java.util.*;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class Ten implements Comparable<Ten>{
+    private String n,ten,ho;
+    public Ten(String n){
+        this.n=chuanHoa(n);
+        String[] a=this.n.split("\\s+");
+        this.ten=a[a.length-1];
+        String k="";
+        for(int i=0;i<a.length-1;i++){
+            k+=a[i];
+        }
+        this.ho=k;
+    }
+    private String chuanHoa(String n){
+        String k=n;
+        k=k.trim();
+        k=k.toLowerCase();
+        String[]a=k.split("\\s+");
+        String m="";
+        for(int i=0;i<a.length;i++){
+            
+            String l=""; l+=a[i].charAt(0);
+            l=l.toUpperCase();
+            m+=l;
+            m+=a[i].substring(1,a[i].length());
+            m+=" ";
+        }
+        return m.substring(0,m.length()-1);
+    }    
+    @Override 
+    public String toString(){
+        return n;
+    }
+    @Override
+    public int compareTo(Ten p) {
+        if(this.ten.compareTo(p.ten)<0) return -1;
+        if(this.ten.compareTo(p.ten)==0){
+            if(this.ho.compareTo(p.ho)<0) return -1;
+            else return 1;
+        }
+        else return 1;
+    }   
+}
+
+public class JavaApplication3 {
+    public static void main(String[] args) throws FileNotFoundException {
+        File f=new File("DANHSACH.in");
+        Scanner s=new Scanner(f);
+        ArrayList<Ten>a=new ArrayList<>() ;
+        while(s.hasNextLine()){
+            Ten sv=new Ten(s.nextLine());
+            a.add(sv);
+        }
+        Collections.sort(a);
+        for(Ten sv:a){
+            System.out.println(sv);
+        }
+    }
+}
